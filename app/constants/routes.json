@@ -1,4 +1,9 @@
 {
   "HOME": "/",
-  "COUNTER": "/counter"
+  "COUNTER": "/counter",
+  "THANHTOAN": "/thanhtoan",
+  "QUANLYDONHANG": "/quanlydonhang",
+  "CONGNO": "/congno",
+  "MUAHANG": "/muahang",
+  "THONGKE": "/thongke"
 }

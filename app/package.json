@@ -14,5 +14,14 @@
     "postinstall": "yarn electron-rebuild"
   },
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "lowdb": "^1.0.0",
+    "react-autosuggest": "^10.0.2",
+    "semantic-ui-react": "^0.88.2",
+    "shortid": "^2.2.15"
+  },
+  "devDependencies": {
+    "@types/react-autosuggest": "^9.3.13",
+    "@types/shortid": "^0.0.29"
+  }
 }
