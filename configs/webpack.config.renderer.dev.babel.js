@@ -10,13 +10,8 @@ import fs from 'fs';
 import webpack from 'webpack';
 import chalk from 'chalk';
 import merge from 'webpack-merge';
-import {
-  spawn,
-  execSync
-} from 'child_process';
-import {
-  TypedCssModulesPlugin
-} from 'typed-css-modules-webpack-plugin';
+import { spawn, execSync } from 'child_process';
+import { TypedCssModulesPlugin } from 'typed-css-modules-webpack-plugin';
 import baseConfig from './webpack.config.base';
 import CheckNodeEnv from '../internals/scripts/CheckNodeEnv';
 
@@ -66,9 +61,11 @@ export default merge.smart(baseConfig, {
   },
 
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.global\.css$/,
-        use: [{
+        use: [
+          {
             loader: 'style-loader'
           },
           {
@@ -81,7 +78,8 @@ export default merge.smart(baseConfig, {
       },
       {
         test: /^((?!\.global).)*\.css$/,
-        use: [{
+        use: [
+          {
             loader: 'style-loader'
           },
           {
@@ -99,7 +97,8 @@ export default merge.smart(baseConfig, {
       // SASS support - compile all .global.scss files and pipe it to style.css
       {
         test: /\.global\.(scss|sass)$/,
-        use: [{
+        use: [
+          {
             loader: 'style-loader'
           },
           {
@@ -116,7 +115,8 @@ export default merge.smart(baseConfig, {
       // SASS support - compile all other .scss files and pipe it to style.css
       {
         test: /^((?!\.global).)*\.(scss|sass)$/,
-        use: [{
+        use: [
+          {
             loader: 'style-loader'
           },
           {
@@ -190,13 +190,13 @@ export default merge.smart(baseConfig, {
     }
   },
   plugins: [
-    requiredByDLLConfig ?
-    null :
-    new webpack.DllReferencePlugin({
-      context: path.join(__dirname, '..', 'dll'),
-      manifest: require(manifest),
-      sourceType: 'var'
-    }),
+    requiredByDLLConfig
+      ? null
+      : new webpack.DllReferencePlugin({
+          context: path.join(__dirname, '..', 'dll'),
+          manifest: require(manifest),
+          sourceType: 'var'
+        }),
 
     new webpack.HotModuleReplacementPlugin({
       multiStep: true
@@ -260,10 +260,10 @@ export default merge.smart(baseConfig, {
       if (process.env.START_HOT) {
         console.log('Starting Main Process...');
         spawn('npm', ['run', 'start-main-dev'], {
-            shell: true,
-            env: process.env,
-            stdio: 'inherit'
-          })
+          shell: true,
+          env: process.env,
+          stdio: 'inherit'
+        })
           .on('close', code => process.exit(code))
           .on('error', spawnError => console.error(spawnError));
       }

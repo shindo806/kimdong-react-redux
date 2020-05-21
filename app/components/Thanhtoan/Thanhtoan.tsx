@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-
 import { Message } from 'semantic-ui-react';
-import { initialMaSoDonHang } from 'utils/masodonhang';
-import { getKhachHang } from 'dataAPI/connectDB';
+import { useRecoilState } from 'recoil';
+import { initialMaSoDonHang } from '../../utils/masodonhang';
+import { getKhachHang } from '../../dataAPI/connectDB';
+// state
+import loaihangState from './atoms/loaihang';
 
 // Components import
 import Thongtinchung from './Thongtinchung';
@@ -22,7 +24,7 @@ import styles from './thanhtoan.css';
 // }
 
 export default function Thanhtoan() {
-  const [loaihangRender, setLoaiHangRender] = useState('default'); // State quản lý việc user chọn loaị hàng => render component thông số
+  const [loaihangRender, setLoaiHangRender] = useRecoilState(loaihangState); // State quản lý việc user chọn loaị hàng => render component thông số
   const [isAddItem, setIsAddItem] = useState(false);
 
   const [data, setData] = useState(() => {
@@ -110,17 +112,9 @@ export default function Thanhtoan() {
                   >
                     <div className="nhap-don-hang">
                       {/* Select loại hàng */}
-                      <Loaihang
-                        loaihangRender={loaihangRender}
-                        setLoaiHangRender={setLoaiHangRender}
-                      />
+                      <Loaihang />
                       {/* Nhập thông số loại hàng */}
-                      <Thongso
-                        loaihangRender={loaihangRender}
-                        setLoaiHangRender={setLoaiHangRender}
-                        setIsAddItem={setIsAddItem}
-                        setData={setData}
-                      />
+                      <Thongso setIsAddItem={setIsAddItem} setData={setData} />
                       {/* Thêm - Sửa */}
 
                       <div

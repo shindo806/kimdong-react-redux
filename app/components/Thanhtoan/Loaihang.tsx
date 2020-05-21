@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useRecoilState } from 'recoil';
+
+import loaihangState from './atoms/loaihang';
 
 import styles from './thanhtoan.css';
 
-export default function Loaihang(props) {
-  const [loaihang, setLoaiHang] = useState('default');
-  const onHandleSelect = () => {
-    const selectElement = document.querySelector('#loai-hang');
-    props.setLoaiHangRender(selectElement.value);
+export default function Loaihang() {
+  const [loaihang, setLoaiHang] = useRecoilState(loaihangState);
+  const onHandleSelect = e => {
+    setLoaiHang(e.target.value);
   };
 
-  useEffect(() => {
-    setLoaiHang(props.loaihangRender);
-  }, [props.loaihangRender]);
   return (
     <>
       <div className={styles['loai-hang']}>
@@ -19,7 +18,7 @@ export default function Loaihang(props) {
           value={loaihang}
           id="loai-hang"
           className={`${styles.ui} ${styles.search} ${styles.dropdown}`}
-          onChange={onHandleSelect}
+          onChange={e => onHandleSelect(e)}
         >
           <option value="default">Loại hàng</option>
           <option value="T1">Tấm - m ly : a*b</option>

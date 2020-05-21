@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { Message } from 'semantic-ui-react';
-import * as congthuc from 'utils/tinhtien';
-import xuLyTieuDeLoaiThep from 'utils/xulytieudeloaithep';
 
-import { formatNumber, toNumber } from 'utils/xulynumber';
+import { useRecoilValue } from 'recoil';
+
+// Utils
+import xuLyTieuDeLoaiThep from 'utils/xulytieudeloaithep';
 import { luuDuLieuTamThoi } from 'utils/localStorage';
+import { formatNumber, toNumber } from 'utils/xulynumber';
 import getDomIdElement from 'utils/getDomElement';
+// State
+import loaihangState from './atoms/loaihang';
+
+import * as congthuc from '../../utils/tinhtien';
 
 import styles from './thanhtoan.css';
 
 export default function Thongso(props) {
   // props.loaihangRender  = "default"  - thongso initial = []
+  const kihieuThep = useRecoilValue(loaihangState);
   const [loaihang, setLoaiHang] = useState([]);
+
   const [thongso1, setThongSo1] = useState({
     dai: '',
     day: '',
@@ -33,8 +41,8 @@ export default function Thongso(props) {
   });
   const [error, setError] = useState('');
   let loaithep = [];
-  const handleLoaiHangChange = loaihang => {
-    switch (loaihang) {
+  const handleLoaiHangChange = (string: string) => {
+    switch (string) {
       case 'T1':
         loaithep = ['a', 'b'];
         break;
@@ -98,6 +106,9 @@ export default function Thongso(props) {
       case 'CNC3':
         loaithep = ['a', 'b'];
         break;
+      case 'default':
+        loaithep = [];
+        break;
       default:
         loaithep = [];
         break;
@@ -110,9 +121,11 @@ export default function Thongso(props) {
     // Set tựa đề cho thanh Thông số loại hàng: default
     document.getElementById('thong-so-title').innerHTML =
       'Thông số loại hàng: ';
-    const newLoaiHang = handleLoaiHangChange(props.loaihangRender);
-    setLoaiHang(newLoaiHang);
-    // Reset input field ve default
+    // Render thông số theo loại thép mà user chọn
+    setLoaiHang(handleLoaiHangChange(kihieuThep));
+    console.log('ki hieu thep', kihieuThep);
+    console.log('loai hang array', loaithep);
+    // Reset input field về default
     setThongSo1({
       dai: '',
       day: '',
@@ -123,16 +136,16 @@ export default function Thongso(props) {
       a1: ''
     });
     setThongSo2({
-      cong1: '',
-      cong2: '',
-      cong3: ''
+      cong1: 0,
+      cong2: 0,
+      cong3: 0
     });
     setThongSo3({
       dongia: 0,
       soluong: 0,
       thanhtien: 0
     });
-  }, [props.loaihangRender]);
+  }, [kihieuThep]);
 
   // Handle Select tất cả giá trị trong ô input khi user click vào ô input
   const handleFocus = event => {
@@ -141,18 +154,19 @@ export default function Thongso(props) {
 
   // Trigger when user want to add item to localStorage
   const handleAddItem = () => {
-    const donhang = {
-      ...thongso1,
-      ...thongso2,
-      ...thongso3,
-      loaihang: document.getElementById('result-loaihang').innerText // lấy thông tin loại hàng để render
-    };
-    const saveStatus = luuDuLieuTamThoi(donhang);
-    if (saveStatus) {
-      props.setLoaiHangRender('default');
-      // send status back to parent component
-      props.setIsAddItem(true);
-    }
+    // const donhang = {
+    //   ...thongso1,
+    //   ...thongso2,
+    //   ...thongso3,
+    //   loaihang: document.getElementById('result-loaihang').innerText // lấy thông tin loại hàng để render
+    // };
+    // const saveStatus = luuDuLieuTamThoi(donhang);
+    // if (saveStatus) {
+    //   props.setLoaiHangRender('default');
+    //   // send status back to parent component
+    //   props.setIsAddItem(true);
+    // }
+    console.log('save item');
   };
 
   // Handle Input Change: 3 type
@@ -166,7 +180,7 @@ export default function Thongso(props) {
     newState[`${elementID}`] = elementIDValue;
     setThongSo1(newState);
     // Render tiêu đề loại thép
-    xuLyTieuDeLoaiThep(props.loaihangRender, newState);
+    xuLyTieuDeLoaiThep(loaihang, newState);
   };
   const handleTrigger1 = (typeofValue, event) => {
     // Nhiệm vụ của function này là trigger function tính đơn giá và thành tiền mỗi lần user thay đổi giá trị các ô type1
