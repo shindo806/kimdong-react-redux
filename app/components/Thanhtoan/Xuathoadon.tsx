@@ -1,17 +1,17 @@
 import React from 'react';
-import { postLuuDonHang, getAllData } from '../../dataAPI/connectDB';
-import { muaHangTrongNgay, removeTempData } from '../../utils/localStorage';
-import { luuMaSoDonHang, taoMaSoDonHang } from '../../utils/masodonhang';
-import styles from '../Thanhtoan/thanhtoan.css';
+import { postLuuDonHang, getAllData } from 'dataAPI/connectDB';
+import { muaHangTrongNgay, removeTempData } from 'utils/localStorage';
+import { luuMaSoDonHang, taoMaSoDonHang } from 'utils/masodonhang';
+import styles from './thanhtoan.css';
 
 const moment = require('moment');
 
 export default function Xuathoadon(props) {
   const luuDonHang = () => {
-    let tongtien = document.querySelector('#thanhtien-render').innerText;
-    let thanhtoan = document.querySelector('#thanhtoan-render').value;
-    let duno = document.querySelector('#duno-render').innerText;
-    let khachhangInfo = JSON.parse(localStorage.getItem('tempKhachHangInfo')); // {ten, khachhangID, sdt}
+    const tongtien = document.querySelector('#thanhtien-render').innerText;
+    const thanhtoan = document.querySelector('#thanhtoan-render').value;
+    const duno = document.querySelector('#duno-render').innerText;
+    const khachhangInfo = JSON.parse(localStorage.getItem('tempKhachHangInfo')); // {ten, khachhangID, sdt}
     // remove sodienthoai, ko can luu sdt vao donhang -> luu vao khachhang
 
     if (khachhangInfo === null) {
@@ -19,16 +19,16 @@ export default function Xuathoadon(props) {
       return;
     }
 
-    let masodonhang = document.querySelector('#don-hang-id').innerText;
+    const masodonhang = document.querySelector('#don-hang-id').innerText;
 
-    let ngaylapdonhang = moment().format('LLLL');
-    let trangthaigiacong = false;
-    let tatcadonhang = JSON.parse(localStorage.getItem('tempData'));
+    const ngaylapdonhang = moment().format('LLLL');
+    const trangthaigiacong = false;
+    const tatcadonhang = JSON.parse(localStorage.getItem('tempData'));
     if (tatcadonhang === null) {
       alert('Không thể lưu đơn hàng trống !');
       return;
     }
-    let donhang = {
+    const donhang = {
       duno,
       tongtien,
       thanhtoan,
@@ -49,7 +49,7 @@ export default function Xuathoadon(props) {
     });
     // Luu lai masodonhang va tang gia tri masodonhang +1
     luuMaSoDonHang(masodonhang);
-    let newMaSoDonhang = taoMaSoDonHang();
+    const newMaSoDonhang = taoMaSoDonHang();
     props.setMaSoDonHang(newMaSoDonhang);
     // Delete temp data on localStorage
     removeTempData();

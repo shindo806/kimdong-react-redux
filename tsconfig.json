@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ES2018",
     "module": "CommonJS",
+    "baseUrl": "./app",
     "lib": ["dom", "esnext"],
     "declaration": true,
     "declarationMap": true,

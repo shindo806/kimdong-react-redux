@@ -1,7 +1,9 @@
 function luuDuLieuTamThoi(donhang) {
   // thongso: Object {a, b, c, a1, m, }
   // tinhtien: Object {dongia, soluong, thanhtien}
-  let initialData = localStorage.getItem('tempData') ? JSON.parse(localStorage.getItem('tempData')) : [];
+  const initialData = localStorage.getItem('tempData')
+    ? JSON.parse(localStorage.getItem('tempData'))
+    : [];
 
   initialData.push(donhang);
   localStorage.setItem('tempData', JSON.stringify(initialData));
@@ -14,23 +16,27 @@ function xoaDuLieuTamThoi() {
 }
 
 function muaHangTrongNgay(khachhangInfo) {
-  let muaHangTrongNgay = localStorage.getItem('muaHangTrongNgay') ? JSON.parse(localStorage.getItem('muaHangTrongNgay')) : [];
+  const muaHangTrongNgay = localStorage.getItem('muaHangTrongNgay')
+    ? JSON.parse(localStorage.getItem('muaHangTrongNgay'))
+    : [];
   // khachhangInfo : { tenkhachhang, khachhangID, masodonhang }
   if (muaHangTrongNgay.length === 0) {
     muaHangTrongNgay.push(khachhangInfo);
     localStorage.setItem('muaHangTrongNgay', JSON.stringify(muaHangTrongNgay));
-    return;
   } else {
-    let matchedKhachHang = muaHangTrongNgay.filter(item => item.khachhangID === khachhangInfo.khachhangID)
+    const matchedKhachHang = muaHangTrongNgay.filter(
+      item => item.khachhangID === khachhangInfo.khachhangID
+    );
     if (!matchedKhachHang.length) {
       muaHangTrongNgay.push(khachhangInfo);
-      localStorage.setItem('muaHangTrongNgay', JSON.stringify(muaHangTrongNgay));
-      return;
+      localStorage.setItem(
+        'muaHangTrongNgay',
+        JSON.stringify(muaHangTrongNgay)
+      );
     } else {
-      console.log("khach hang mua >2 don hang/ngay");
+      console.log('khach hang mua >2 don hang/ngay');
     }
   }
-
 }
 
 function setMaSoDonHang(masodonhangArr) {

@@ -1,21 +1,23 @@
 import React, { Fragment } from 'react';
 import { render } from 'react-dom';
+
+import { RecoilRoot } from 'recoil';
+
 import { AppContainer as ReactHotAppContainer } from 'react-hot-loader';
 import Root from './containers/Root';
-import { configureStore, history } from './store/configureStore';
-import { getAllData } from './dataAPI/connectDB';
 
 import './app.global.css';
-
-const store = configureStore(getAllData());
+import 'semantic-ui-css/semantic.min.css';
 
 const AppContainer = process.env.PLAIN_HMR ? Fragment : ReactHotAppContainer;
 
 document.addEventListener('DOMContentLoaded', () =>
   render(
-    <AppContainer>
-      <Root store={store} history={history} />
-    </AppContainer>,
+    <RecoilRoot>
+      <AppContainer>
+        <Root />
+      </AppContainer>
+    </RecoilRoot>,
     document.getElementById('root')
   )
 );

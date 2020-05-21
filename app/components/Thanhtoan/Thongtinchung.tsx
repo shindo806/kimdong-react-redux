@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import shortid from 'shortid';
 import Autosuggest from 'react-autosuggest';
 
-import styles from './thanhtoan.css';
+import { initialMaSoDonHang } from 'utils/masodonhang';
+import { taoNgayLapDonHang } from 'utils/taoNgayLapDonHang';
+import { setTempKhachHangInfo } from 'utils/localStorage';
 
-import { initialMaSoDonHang } from '../../utils/masodonhang';
-import { taoNgayLapDonHang } from '../../utils/taoNgayLapDonHang';
-import { setTempKhachHangInfo } from '../../utils/localStorage';
+import styles from './thanhtoan.css';
 
 export default function Thongtinchung(props) {
   const [ngaylapdonhang, setNgayLapDonHang] = useState(() =>
@@ -39,7 +39,7 @@ export default function Thongtinchung(props) {
       localStorage.removeItem('tempKhachHangInfo');
       return;
     }
-    let matched = khachhangs.filter(
+    const matched = khachhangs.filter(
       khachhang => khachhang.tenkhachhang === tenkhachhang
     );
     if (matched.length === 0) {
@@ -78,7 +78,7 @@ export default function Thongtinchung(props) {
     onBlur: onHandleTenKhachHangBlur
   };
   const handleSodienthoai = sodienthoai => {
-    let matched = khachhangs.filter(
+    const matched = khachhangs.filter(
       khachhang => khachhang.sodienthoai === sodienthoai
     );
     if (matched.length === 0) {
@@ -87,7 +87,6 @@ export default function Thongtinchung(props) {
         sodienthoai: sdt,
         khachhangID: shortid.generate()
       });
-      return;
     } else {
       setValue(matched[0].tenkhachhang);
       setTempKhachHangInfo({

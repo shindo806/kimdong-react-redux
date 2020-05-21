@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Message } from 'semantic-ui-react';
+import * as congthuc from 'utils/tinhtien';
+import xuLyTieuDeLoaiThep from 'utils/xulytieudeloaithep';
+
+import { formatNumber, toNumber } from 'utils/xulynumber';
+import { luuDuLieuTamThoi } from 'utils/localStorage';
+import getDomIdElement from 'utils/getDomElement';
+
 import styles from './thanhtoan.css';
-
-import * as congthuc from '../../utils/tinhtien';
-
-import xuLyTieuDeLoaiThep from '../../utils/xulytieudeloaithep';
-import { formatNumber, toNumber } from '../../utils/xulynumber';
-import { luuDuLieuTamThoi } from '../../utils/localStorage';
-import getDomIdElement from '../../utils/getDomElement';
 
 export default function Thongso(props) {
   // props.loaihangRender  = "default"  - thongso initial = []
@@ -110,7 +110,7 @@ export default function Thongso(props) {
     // Set tựa đề cho thanh Thông số loại hàng: default
     document.getElementById('thong-so-title').innerHTML =
       'Thông số loại hàng: ';
-    let newLoaiHang = handleLoaiHangChange(props.loaihangRender);
+    const newLoaiHang = handleLoaiHangChange(props.loaihangRender);
     setLoaiHang(newLoaiHang);
     // Reset input field ve default
     setThongSo1({
@@ -141,7 +141,7 @@ export default function Thongso(props) {
 
   // Trigger when user want to add item to localStorage
   const handleAddItem = () => {
-    let donhang = {
+    const donhang = {
       ...thongso1,
       ...thongso2,
       ...thongso3,
@@ -160,9 +160,9 @@ export default function Thongso(props) {
   // -> nếu user thay đổi giá trị thì gọi lại hàm tính đơn giá -> tính thành tiền
   const handleInputChange1 = elementID => {
     // Nhiệm vụ của function này chỉ là setState cho các giá trị elementID thay đổi
-    let elementIDValue = getDomIdElement(elementID).value;
+    const elementIDValue = getDomIdElement(elementID).value;
     // setState using thongso1 state
-    let newState = { ...thongso1 };
+    const newState = { ...thongso1 };
     newState[`${elementID}`] = elementIDValue;
     setThongSo1(newState);
     // Render tiêu đề loại thép
@@ -172,7 +172,7 @@ export default function Thongso(props) {
     // Nhiệm vụ của function này là trigger function tính đơn giá và thành tiền mỗi lần user thay đổi giá trị các ô type1
 
     if (event.key === 'Tab') {
-      let thongso = {
+      const thongso = {
         ...thongso1,
         ...thongso2
       };
@@ -180,14 +180,13 @@ export default function Thongso(props) {
       if (isNaN(dongia)) {
         dongia = 0;
       }
-      let thanhtien = congthuc.tinhthanhtien(dongia, thongso3.soluong);
+      const thanhtien = congthuc.tinhthanhtien(dongia, thongso3.soluong);
 
       setThongSo3(prev => ({
         ...prev,
         dongia: formatNumber(dongia),
         thanhtien: formatNumber(thanhtien)
       }));
-      return;
     }
   };
 
@@ -231,9 +230,9 @@ export default function Thongso(props) {
   // -> nếu user thay đổi giá trị thì gọi lại hàm tính đơn giá -> tính thành tiền
   const handleInputChange2 = elementID => {
     // Nhiệm vụ của function này chỉ là setState cho các giá trị elementID thay đổi
-    let elementIDValue = getDomIdElement(elementID).value;
+    const elementIDValue = getDomIdElement(elementID).value;
     // setState using thongso1 state
-    let newState = { ...thongso2 };
+    const newState = { ...thongso2 };
     newState[`${elementID}`] = isNaN(parseInt(toNumber(elementIDValue)))
       ? ''
       : parseInt(elementIDValue);
@@ -246,14 +245,14 @@ export default function Thongso(props) {
     // 2. tính đơn giá và thành tiền mỗi lần user thay đổi giá trị các ô type1
     if (event.key === 'Tab') {
       // 1. 15 -> 15.000
-      let elementIdValue = getDomIdElement(`${elementID}`).value;
-      let formatedNumber = formatNumber(parseInt(elementIdValue * 1000));
-      let newThongSo2 = { ...thongso2 };
+      const elementIdValue = getDomIdElement(`${elementID}`).value;
+      const formatedNumber = formatNumber(parseInt(elementIdValue * 1000));
+      const newThongSo2 = { ...thongso2 };
       newThongSo2[`${elementID}`] = formatedNumber;
       setThongSo2(newThongSo2);
 
       // 2. tính đơn giá dựa trên newThongSo2 - newest state -> call 2 functions: tinhdongia and tinhthanhtien
-      let thongso = {
+      const thongso = {
         ...thongso1,
         ...newThongSo2
       };
@@ -261,7 +260,7 @@ export default function Thongso(props) {
       if (isNaN(dongia)) {
         dongia = 0;
       }
-      let thanhtien = congthuc.tinhthanhtien(dongia, thongso3.soluong);
+      const thanhtien = congthuc.tinhthanhtien(dongia, thongso3.soluong);
 
       return setThongSo3(prev => ({
         ...prev,
@@ -274,14 +273,14 @@ export default function Thongso(props) {
   // Type 3: handle value cho các gía trị: đơn giá, số lượng, thành tiền
   const handleInputChange3 = (elementID, event) => {
     // Nhiệm vụ của function này chỉ là setState cho các giá trị elementID thay đổi
-    let elementIDValue = event.target.value;
+    const elementIDValue = event.target.value;
     if (elementID === 'soluong') {
-      let newState = { ...thongso3 };
-      let thanhtien = congthuc.tinhthanhtien(
+      const newState = { ...thongso3 };
+      const thanhtien = congthuc.tinhthanhtien(
         toNumber(newState.dongia),
         elementIDValue
       );
-      let thanhtienFormated = isNaN(thanhtien) ? 0 : formatNumber(thanhtien);
+      const thanhtienFormated = isNaN(thanhtien) ? 0 : formatNumber(thanhtien);
 
       return setThongSo3(prev => ({
         ...prev,
@@ -291,9 +290,9 @@ export default function Thongso(props) {
     }
 
     // setState using thongso1 state
-    let newState = { ...thongso3 };
+    const newState = { ...thongso3 };
     if (elementID === 'soluong') {
-      let thanhtien = congthuc.tinhthanhtien(newState.dongia, elementIDValue);
+      const thanhtien = congthuc.tinhthanhtien(newState.dongia, elementIDValue);
 
       setThongSo3(prev => ({
         ...prev,
@@ -312,25 +311,28 @@ export default function Thongso(props) {
     // 2. tính đơn giá và thành tiền mỗi lần user thay đổi giá trị các ô type1
     if (elementID === 'dongia') {
       if ((event.key === 'Tab') | (event.key === 'Enter')) {
-        let dongia = getDomIdElement(`${elementID}`).value;
+        const dongia = getDomIdElement(`${elementID}`).value;
         // TH1: Có giá trị sẵn do tính từ công thức và setState3
         if (dongia.includes('.')) {
-          let dongiaFormated = toNumber(dongia);
-          let thanhtien = congthuc.tinhthanhtien(
+          const dongiaFormated = toNumber(dongia);
+          const thanhtien = congthuc.tinhthanhtien(
             dongiaFormated,
             thongso3.soluong
           );
 
           return setThongSo3(prev => ({
             ...prev,
-            dongia: dongia,
+            dongia,
             thanhtien: formatNumber(thanhtien)
           }));
         }
 
         // TH2: User nhập vào
-        let dongiaFormated = formatNumber(dongia * 1000);
-        let thanhtien = congthuc.tinhthanhtien(dongia * 1000, thongso3.soluong);
+        const dongiaFormated = formatNumber(dongia * 1000);
+        const thanhtien = congthuc.tinhthanhtien(
+          dongia * 1000,
+          thongso3.soluong
+        );
         return setThongSo3(prev => ({
           ...prev,
           dongia: dongiaFormated,

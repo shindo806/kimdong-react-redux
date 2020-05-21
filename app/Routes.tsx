@@ -1,20 +1,23 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import routes from './constants/routes.json';
-import App from './containers/App';
-// import HomePage from './containers/HomePage';
+import { Route, Switch, Router } from 'react-router';
+import { createHashHistory } from 'history';
 
-import ThanhtoanPage from './containers/ThanhToanPage';
+import ThanhtoanPage from 'containers/ThanhToanPage';
+import QuanLyDonHangPage from 'containers/QuanLyDonHangPage';
+import App from './containers/App';
+import routes from './constants/routes.json';
+
+const history = createHashHistory();
 
 export default function Routes() {
   return (
     <App>
-      <Switch>
-        <Route path={routes.HOME} component={ThanhtoanPage} />
-
-        {/* Adding route above this line */}
-        {/* <Route path={routes.HOME} component={HomePage} /> */}
-      </Switch>
+      <Router history={history}>
+        <Switch>
+          <Route path={routes.QUANLYDONHANG} component={QuanLyDonHangPage} />
+          <Route path={routes.HOME} component={ThanhtoanPage} />
+        </Switch>
+      </Router>
     </App>
   );
 }

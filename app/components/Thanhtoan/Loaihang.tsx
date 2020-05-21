@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import styles from '../Thanhtoan/thanhtoan.css';
+import styles from './thanhtoan.css';
 
 export default function Loaihang(props) {
   const [loaihang, setLoaiHang] = useState('default');

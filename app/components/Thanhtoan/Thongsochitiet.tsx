@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { toNumber, formatNumber } from 'utils/xulynumber';
 
 import ContentEditable from 'react-contenteditable';
 import { Table } from 'semantic-ui-react';
-import styles from '../Thanhtoan/thanhtoan.css';
-
-import { toNumber, formatNumber } from '../../utils/xulynumber';
+import styles from './thanhtoan.css';
 
 const TableRender = props => {
   const [renderEl, setRenderEl] = useState('');
@@ -220,7 +219,7 @@ const TableRender = props => {
   //     store: store.map((item, i) => (item[column] === row ? updatedRow : item)),
   //   });
   // };
-  //};
+  // };
   const handleThanhToanChange = () => {
     console.log('nhap thanh toan');
   };

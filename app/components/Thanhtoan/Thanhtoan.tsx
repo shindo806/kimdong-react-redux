@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 import { Message } from 'semantic-ui-react';
+import { initialMaSoDonHang } from 'utils/masodonhang';
+import { getKhachHang } from 'dataAPI/connectDB';
 
 // Components import
 import Thongtinchung from './Thongtinchung';
@@ -9,9 +11,6 @@ import Loaihang from './Loaihang';
 import Thongso from './Thongso';
 import Thongsochitiet from './Thongsochitiet';
 import Navbar from '../Navbar/Navbar';
-
-import { getKhachHang } from '../../dataAPI/connectDB';
-import { initialMaSoDonHang } from '../../utils/masodonhang';
 
 import styles from './thanhtoan.css';
 
@@ -59,8 +58,13 @@ export default function Thanhtoan() {
   return (
     <div>
       {/* Navbar */}
-      <Navbar />
-
+      <section className={styles['top-nav']}>
+        <div className={styles['container-fluid']}>
+          <div className={styles.row}>
+            <Navbar />
+          </div>
+        </div>
+      </section>
       {/* header */}
       <div className="main-panel" style={{ padding: '20px' }}>
         <div className={styles['container-fluid']}>

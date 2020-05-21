@@ -55,6 +55,78 @@
           "loaihang": " Tấm - 20 ly: 2000*1000"
         }
       ]
+    },
+    {
+      "duno": "-37.680.000",
+      "tongtien": "37.680.000",
+      "tenkhachhang": "lam thai son",
+      "sodienthoai": "0938752570",
+      "khachhangID": "s_zpPqL8C",
+      "masodonhang": "011705",
+      "ngaylapdonhang": "Sunday, May 17, 2020 2:57 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "2000",
+          "b": "1000",
+          "c": "",
+          "a1": "",
+          "cong1": "15.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "1.884.000",
+          "soluong": "20",
+          "thanhtien": "37.680.000",
+          "loaihang": " Tấm - 8 ly: 2000*1000"
+        }
+      ]
+    },
+    {
+      "duno": "-411.968.000",
+      "tongtien": "411.968.000",
+      "tenkhachhang": "lam thai son",
+      "sodienthoai": "0938752570",
+      "khachhangID": "s_zpPqL8C",
+      "masodonhang": "012105",
+      "ngaylapdonhang": "Thursday, May 21, 2020 2:11 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "1000",
+          "b": "2000",
+          "c": "123",
+          "a1": "",
+          "cong1": "14.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "1.758.400",
+          "soluong": "20",
+          "thanhtien": "35.168.000",
+          "loaihang": " Tấm - 8 ly: 1000*2000-123Ø"
+        },
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "1000",
+          "b": "200",
+          "c": "",
+          "a1": "",
+          "cong1": "1.500.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "18.840.000",
+          "soluong": "20",
+          "thanhtien": "376.800.000",
+          "loaihang": " Tấm - 8 ly: 1000*200"
+        }
+      ]
     }
   ],
   "khachhang": [
