@@ -79,7 +79,6 @@ const postLuuDonHang = donhang => {
 // Khach hang
 const getKhachHang = () => {
   const khachhangData = db.get('khachhang').value();
-
   return khachhangData;
 };
 

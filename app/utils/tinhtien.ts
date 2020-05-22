@@ -1,6 +1,19 @@
 import { toNumber } from './xulynumber';
 
-const tinhdongia = (loaihang, thongso) => {
+interface Thongso {
+  day: string;
+  dai?: string;
+  donvitinh?: string;
+  a: string;
+  b?: string;
+  c?: string;
+  a1?: string;
+  cong1?: number;
+  cong2?: number;
+  cong3?: number;
+}
+
+const tinhdongia = (loaihang, thongso: Thongso) => {
   // loaihang : string. ex: T1, CNC2, ...
   // thongso: Object {day: ..., dai: ..., ...}
   // convert thongso type: Number
@@ -8,15 +21,16 @@ const tinhdongia = (loaihang, thongso) => {
   // k: cong1; k2: cong2; k3: cong3
   // return  dongia cua 1 loai hang
   let dongia = 0;
-  const m = parseInt(thongso.day);
-  const q = parseInt(thongso.dai);
-  const a = parseInt(thongso.a);
-  const b = parseInt(thongso.b);
-  const c = parseInt(thongso.c);
-  const a1 = parseInt(thongso.a1);
-  const k = thongso.cong1 !== 0 ? parseInt(toNumber(thongso.cong1)) : 0;
-  const k2 = thongso.cong2 !== 0 ? parseInt(toNumber(thongso.cong2)) : 0;
-  const k3 = thongso.cong3 !== 0 ? parseInt(toNumber(thongso.cong3)) : 0;
+  const m = parseInt(thongso.day, 10);
+  const q = parseInt(thongso.dai, 10);
+  const a = parseInt(thongso.a, 10);
+  const b = parseInt(thongso.b, 10);
+  const c = parseInt(thongso.c, 10);
+  const a1 = parseInt(thongso.a1, 10);
+
+  const k = thongso.cong1 !== 0 ? toNumber(thongso.cong1) : 0;
+  const k2 = thongso.cong2 !== 0 ? toNumber(thongso.cong2) : 0;
+  const k3 = thongso.cong3 !== 0 ? toNumber(thongso.cong3) : 0;
 
   switch (loaihang) {
     case 'T1':
@@ -97,9 +111,7 @@ const tinhdongia = (loaihang, thongso) => {
 };
 
 const tinhthanhtien = (dongia, soluong) => {
-  return parseInt(dongia) * parseInt(soluong);
+  return parseInt(dongia, 10) * parseInt(soluong, 10);
 };
 
 export { tinhdongia, tinhthanhtien };
-
-// Undone: chưa làm tròn kết quả

@@ -1,33 +1,51 @@
 import React from 'react';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import moment from 'moment';
 import { postLuuDonHang, getAllData } from 'dataAPI/connectDB';
-import { muaHangTrongNgay, removeTempData } from 'utils/localStorage';
-import { luuMaSoDonHang, taoMaSoDonHang } from 'utils/masodonhang';
+import {
+  muaHangTrongNgay,
+  removeTempData,
+  xoaDuLieuTamThoi,
+  setKhachHangData
+} from '../../utils/localStorage';
+import { luuMaSoDonHang, taoMaSoDonHang } from '../../utils/masodonhang';
 import styles from './thanhtoan.css';
 
-const moment = require('moment');
+// State
+import tempData from './atoms/tempData';
+import masodonhangState from './atoms/masodonhang';
+import tenkhachhang from './atoms/tenkhachhang';
+import sodienthoai from './atoms/sodienthoai';
+import errorState from './atoms/warning-error';
+import { getKhachHang } from '../../dataAPI/connectDB';
 
 export default function Xuathoadon(props) {
+  const [data, setData] = useRecoilState(tempData);
+  const [masodonhang, setMaSoDonHang] = useRecoilState(masodonhangState);
+  const setTenKhachHang = useSetRecoilState(tenkhachhang);
+  const setSoDienThoai = useSetRecoilState(sodienthoai);
+  const setError = useSetRecoilState(errorState);
+
   const luuDonHang = () => {
     const tongtien = document.querySelector('#thanhtien-render').innerText;
     const thanhtoan = document.querySelector('#thanhtoan-render').value;
     const duno = document.querySelector('#duno-render').innerText;
     const khachhangInfo = JSON.parse(localStorage.getItem('tempKhachHangInfo')); // {ten, khachhangID, sdt}
-    // remove sodienthoai, ko can luu sdt vao donhang -> luu vao khachhang
-
-    if (khachhangInfo === null) {
-      alert('Thiếu tên khách hàng');
-      return;
-    }
-
     const masodonhang = document.querySelector('#don-hang-id').innerText;
 
     const ngaylapdonhang = moment().format('LLLL');
     const trangthaigiacong = false;
     const tatcadonhang = JSON.parse(localStorage.getItem('tempData'));
-    if (tatcadonhang === null) {
-      alert('Không thể lưu đơn hàng trống !');
+
+    if (khachhangInfo === null) {
+      setError('Thiếu tên khách hàng !');
       return;
     }
+    if (tatcadonhang === null) {
+      setError('Không thể lưu đơn hàng trống !');
+      return;
+    }
+
     const donhang = {
       duno,
       tongtien,
@@ -47,19 +65,23 @@ export default function Xuathoadon(props) {
       khachhangID: khachhangInfo.khachhangID,
       masodonhang
     });
-    // Luu lai masodonhang va tang gia tri masodonhang +1
-    luuMaSoDonHang(masodonhang);
-    const newMaSoDonhang = taoMaSoDonHang();
-    props.setMaSoDonHang(newMaSoDonhang);
+    // tạo mã số đơn hàng mới
+    const newMaSoDonHang = taoMaSoDonHang();
+    luuMaSoDonHang(newMaSoDonHang);
+    setMaSoDonHang(JSON.parse(localStorage.getItem('masodonhang')));
+    // Loai lai thong tin khach hang
+    setKhachHangData(getKhachHang());
     // Delete temp data on localStorage
     removeTempData();
+    setData([]);
     // Clear tenkhachhhang va sodienthoai sau khi luu du lieu xong
-    clearThongTinChung();
+    setTenKhachHang('');
+    setSoDienThoai('');
   };
 
-  const clearThongTinChung = () => {
-    document.getElementById('tenkhachhang').value = '';
-    document.getElementById('sodienthoai').value = '';
+  const onRemoveTempData = () => {
+    xoaDuLieuTamThoi();
+    setData([]);
   };
   return (
     <>
@@ -95,6 +117,7 @@ export default function Xuathoadon(props) {
               title="Xóa bỏ đơn hàng vừa đặt.
                   Lưu ý: Không thể lấy lại được đơn hàng đã xóa!"
               className={`${styles.ui} ${styles.button} ${styles.red}`}
+              onClick={onRemoveTempData}
             >
               Hủy đơn hàng
             </button>

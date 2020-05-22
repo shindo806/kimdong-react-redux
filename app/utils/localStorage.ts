@@ -49,6 +49,11 @@ function setTempKhachHangInfo(khachhangObject) {
   return true;
 }
 
+function setKhachHangData(khachhangObject) {
+  localStorage.setItem('khachhangData', JSON.stringify(khachhangObject));
+  return true;
+}
+
 function removeTempData() {
   localStorage.removeItem('tempData');
   localStorage.removeItem('tempKhachHangInfo');
@@ -61,5 +66,6 @@ export {
   muaHangTrongNgay,
   setMaSoDonHang,
   setTempKhachHangInfo,
+  setKhachHangData,
   removeTempData
 };

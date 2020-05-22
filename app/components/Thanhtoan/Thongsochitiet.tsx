@@ -1,30 +1,41 @@
 import React, { useEffect, useState } from 'react';
-import { toNumber, formatNumber } from 'utils/xulynumber';
-
+import { useRecoilState, useRecoilValue } from 'recoil';
 import ContentEditable from 'react-contenteditable';
 import { Table } from 'semantic-ui-react';
+import { toNumber, formatNumber } from '../../utils/xulynumber';
 import styles from './thanhtoan.css';
+// state
+import tempData from './atoms/tempData';
+import addItem from './atoms/addItem';
 
-const TableRender = props => {
+function tinhthanhtien() {
+  let thanhtien = 0;
+  const isTempDataEmpty = localStorage.getItem('tempData');
+  if (isTempDataEmpty === null) return 0;
+  const thanhtienMap = JSON.parse(isTempDataEmpty).map(item => item.thanhtien);
+  if (thanhtienMap.length === 1) return thanhtienMap[0];
+
+  thanhtien = thanhtienMap.reduce(
+    (arr, curr) => toNumber(arr) + toNumber(curr)
+  );
+  return formatNumber(thanhtien);
+}
+
+const Thongsochitiet = () => {
+  const isAddItem = useRecoilValue(addItem);
+  const [data, setData] = useRecoilState(tempData);
+  const thanhtienState = tinhthanhtien();
+
   const [renderEl, setRenderEl] = useState('');
   const [thanhtien, setThanhTien] = useState(0);
   const [thanhtoan, setThanhToan] = useState(0);
   const [duno, setDuNo] = useState(0);
 
-  useEffect(() => {
-    let thanhtienTotal = 0;
-    for (let i = 0; i < props.data.length; i++) {
-      thanhtienTotal += toNumber(props.data[i].thanhtien);
-    }
-    setThanhTien(thanhtienTotal);
-    setDuNo(thanhtoan - thanhtienTotal);
-  }, [props]);
-
   function createRenderEl() {
     // Table
-    let renderEl;
-    if (props.data.length === 0) {
-      renderEl = (
+    let renderElement;
+    if (data === null) {
+      renderElement = (
         <Table.Row>
           <Table.Cell textAlign="center" className="narrow">
             1
@@ -38,7 +49,7 @@ const TableRender = props => {
         </Table.Row>
       );
     } else {
-      renderEl = props.data.map((row, i) => {
+      renderElement = data.map((row, i) => {
         return (
           <Table.Row key={i + 1}>
             <Table.Cell textAlign="center" className="narrow">
@@ -116,23 +127,28 @@ const TableRender = props => {
         );
       });
     }
-    setRenderEl(renderEl);
+    setRenderEl(renderElement);
   }
 
   useEffect(() => {
+    setData(JSON.parse(localStorage.getItem('tempData')));
+  }, [isAddItem]);
+
+  useEffect(() => {
     createRenderEl();
-  }, [props.data]);
+  }, [data]);
+
   // Utils
-  const addRow = () => {
-    const { store, row } = this.state;
-    const trimSpaces = string => {
-      return string
-        .replace(/&nbsp;/g, '')
-        .replace(/&amp;/g, '&')
-        .replace(/&gt;/g, '>')
-        .replace(/&lt;/g, '<');
-    };
-  };
+  // const addRow = () => {
+  //   const { store, row } = this.state;
+  //   const trimSpaces = string => {
+  //     return string
+  //       .replace(/&nbsp;/g, '')
+  //       .replace(/&amp;/g, '&')
+  //       .replace(/&gt;/g, '>')
+  //       .replace(/&lt;/g, '<');
+  //   };
+  // };
 
   //   const trimmedRow = {
   //     ...row,
@@ -272,7 +288,7 @@ const TableRender = props => {
                     textAlign="right"
                     className="narrow"
                   >
-                    {formatNumber(thanhtien)}
+                    {thanhtienState}
                   </Table.Cell>
                 </Table.Row>
                 {/* Thanh toan */}
@@ -339,4 +355,4 @@ const TableRender = props => {
   );
 };
 
-export default TableRender;
+export default Thongsochitiet;

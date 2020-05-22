@@ -1,4 +1,12 @@
-function xuLyTieuDeLoaiThep(loaihang, thongso) {
+interface ThongSoObject {
+  day?: string;
+  a: string;
+  b?: string;
+  c?: string;
+  a1?: string;
+}
+
+function xuLyTieuDeLoaiThep(loaihang: string, thongso: ThongSoObject) {
   // loaihang: Tấm - m ly: a * b
   // thongso: Object {a: ..., b: ..., m : ...}
   // => render vao ID: thong-so-title
@@ -14,8 +22,7 @@ function xuLyTieuDeLoaiThep(loaihang, thongso) {
   // reset before each render time
   renderEl.innerHTML = '';
 
-  let result = '';
-  // Regex replace m - a - b ...
+  let result: string;
   switch (loaihang) {
     case 'T1':
       result = `Tấm - ${m} ly: ${a}*${b}`;

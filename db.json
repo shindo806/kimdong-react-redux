@@ -127,6 +127,717 @@
           "loaihang": " Tấm - 8 ly: 1000*200"
         }
       ]
+    },
+    {
+      "duno": "0",
+      "tongtien": "47.602.400",
+      "tenkhachhang": "lam thai son",
+      "sodienthoai": "0938752570",
+      "khachhangID": "s_zpPqL8C",
+      "masodonhang": "012205",
+      "ngaylapdonhang": "Friday, May 22, 2020 2:02 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "1000",
+          "b": "1000",
+          "c": "",
+          "a1": "",
+          "cong1": "144.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "9.043.200",
+          "soluong": "1",
+          "thanhtien": "9.043.200",
+          "loaihang": " Tấm - 8 ly: 1000*1000"
+        },
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "2000",
+          "b": "1000",
+          "c": "",
+          "a1": "",
+          "cong1": "14.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "1.758.400",
+          "soluong": "2",
+          "thanhtien": "3.516.800",
+          "loaihang": " Tấm - 8 ly: 2000*1000"
+        },
+        {
+          "dai": "",
+          "day": "9",
+          "donvitinh": "cai",
+          "a": "1000",
+          "b": "2000",
+          "c": "",
+          "a1": "",
+          "cong1": "124.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "17.521.200",
+          "soluong": "2",
+          "thanhtien": "35.042.400",
+          "loaihang": " Tấm - 9 ly: 1000*2000"
+        }
+      ]
+    },
+    {
+      "duno": "0",
+      "tongtien": "136.904.000",
+      "tenkhachhang": "lam thai son",
+      "sodienthoai": "0938752570",
+      "khachhangID": "s_zpPqL8C",
+      "masodonhang": "012205",
+      "ngaylapdonhang": "Friday, May 22, 2020 2:43 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "1000",
+          "b": "1000",
+          "c": "",
+          "a1": "",
+          "cong1": "15.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "942.000",
+          "soluong": "02",
+          "thanhtien": "1.884.000",
+          "loaihang": " Tấm - 8 ly: 1000*1000"
+        },
+        {
+          "dai": "",
+          "day": "10",
+          "donvitinh": "cai",
+          "a": "2000",
+          "b": "2000",
+          "c": "",
+          "a1": "",
+          "cong1": "14.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "4.396.000",
+          "soluong": "20",
+          "thanhtien": "87.920.000",
+          "loaihang": " Tấm - 10 ly: 2000*2000"
+        },
+        {
+          "dai": "",
+          "day": "10",
+          "donvitinh": "cai",
+          "a": "1000",
+          "b": "2000",
+          "c": "",
+          "a1": "",
+          "cong1": "15.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "2.355.000",
+          "soluong": "20",
+          "thanhtien": "47.100.000",
+          "loaihang": " Tấm - 10 ly: 1000*2000"
+        }
+      ]
+    },
+    {
+      "duno": "0",
+      "tongtien": "0",
+      "masodonhang": "012205",
+      "ngaylapdonhang": "Friday, May 22, 2020 2:44 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": null
+    },
+    {
+      "duno": "0",
+      "tongtien": "18.840.000",
+      "tenkhachhang": "lam thai son",
+      "sodienthoai": "0938752570",
+      "khachhangID": "s_zpPqL8C",
+      "masodonhang": "012205",
+      "ngaylapdonhang": "Friday, May 22, 2020 2:45 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "1000",
+          "b": "1000",
+          "c": "",
+          "a1": "",
+          "cong1": "15.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "942.000",
+          "soluong": "20",
+          "thanhtien": "18.840.000",
+          "loaihang": " Tấm - 8 ly: 1000*1000"
+        }
+      ]
+    },
+    {
+      "duno": "0",
+      "tongtien": "4.000.000",
+      "tenkhachhang": "lam thai son",
+      "sodienthoai": "0938752570",
+      "khachhangID": "s_zpPqL8C",
+      "masodonhang": "012205",
+      "ngaylapdonhang": "Friday, May 22, 2020 2:47 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "1000",
+          "b": "2000",
+          "c": "",
+          "a1": "",
+          "cong1": "14.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "200.000",
+          "soluong": "20",
+          "thanhtien": "4.000.000",
+          "loaihang": " Tấm - 8 ly: 1000*2000"
+        }
+      ]
+    },
+    {
+      "duno": "0",
+      "tongtien": "0",
+      "masodonhang": "022205",
+      "ngaylapdonhang": "Friday, May 22, 2020 2:47 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": null
+    },
+    {
+      "duno": "0",
+      "tongtien": "17.584.000",
+      "tenkhachhang": "lam thai son",
+      "sodienthoai": "0938752570",
+      "khachhangID": "s_zpPqL8C",
+      "masodonhang": "012205",
+      "ngaylapdonhang": "Friday, May 22, 2020 2:54 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "1000",
+          "b": "1000",
+          "c": "",
+          "a1": "",
+          "cong1": "14.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "879.200",
+          "soluong": "20",
+          "thanhtien": "17.584.000",
+          "loaihang": " Tấm - 8 ly: 1000*1000"
+        }
+      ]
+    },
+    {
+      "duno": "0",
+      "tongtien": "21.980.000",
+      "tenkhachhang": "lam thai son",
+      "sodienthoai": "0938752570",
+      "khachhangID": "s_zpPqL8C",
+      "masodonhang": "012205",
+      "ngaylapdonhang": "Friday, May 22, 2020 2:58 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "1000",
+          "b": "1000",
+          "c": "",
+          "a1": "",
+          "cong1": "25.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "1.570.000",
+          "soluong": "14",
+          "thanhtien": "21.980.000",
+          "loaihang": " Tấm - 8 ly: 1000*1000"
+        }
+      ]
+    },
+    {
+      "duno": "0",
+      "tongtien": "37.680.000",
+      "tenkhachhang": "lam thai son",
+      "sodienthoai": "0938752570",
+      "khachhangID": "s_zpPqL8C",
+      "masodonhang": "022205",
+      "ngaylapdonhang": "Friday, May 22, 2020 3:00 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "1000",
+          "b": "2000",
+          "c": "",
+          "a1": "",
+          "cong1": "15.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "1.884.000",
+          "soluong": "20",
+          "thanhtien": "37.680.000",
+          "loaihang": " Tấm - 8 ly: 1000*2000"
+        }
+      ]
+    },
+    {
+      "duno": "0",
+      "tongtien": "354.820.000",
+      "tenkhachhang": "le van sinh",
+      "sodienthoai": "1234567896",
+      "khachhangID": "D8KDbwM_6",
+      "masodonhang": "012205",
+      "ngaylapdonhang": "Friday, May 22, 2020 4:42 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "1000",
+          "b": "1000",
+          "c": "",
+          "a1": "",
+          "cong1": "15.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "942.000",
+          "soluong": "20",
+          "thanhtien": "18.840.000",
+          "loaihang": " Tấm - 8 ly: 1000*1000"
+        },
+        {
+          "dai": "",
+          "day": "10",
+          "donvitinh": "cai",
+          "a": "2000",
+          "b": "1000",
+          "c": "",
+          "a1": "",
+          "cong1": "124.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "19.468.000",
+          "soluong": "10",
+          "thanhtien": "194.680.000",
+          "loaihang": " Tấm - 10 ly: 2000*1000"
+        },
+        {
+          "dai": "",
+          "day": "15",
+          "donvitinh": "cai",
+          "a": "2000",
+          "b": "1500",
+          "c": "",
+          "a1": "",
+          "cong1": "20.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "7.065.000",
+          "soluong": "20",
+          "thanhtien": "141.300.000",
+          "loaihang": " Tấm - 15 ly: 2000*1500"
+        }
+      ]
+    },
+    {
+      "duno": "0",
+      "tongtien": "37.680.000",
+      "tenkhachhang": "abc",
+      "sodienthoai": "123213123123",
+      "khachhangID": "1kU4ROcA8",
+      "masodonhang": "022205",
+      "ngaylapdonhang": "Friday, May 22, 2020 4:44 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "2000",
+          "b": "1000",
+          "c": "",
+          "a1": "",
+          "cong1": "15.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "1.884.000",
+          "soluong": "20",
+          "thanhtien": "37.680.000",
+          "loaihang": " Tấm - 8 ly: 2000*1000"
+        }
+      ]
+    },
+    {
+      "duno": "0",
+      "tongtien": "4.019.200",
+      "tenkhachhang": "lam thai son",
+      "sodienthoai": "0938752570",
+      "khachhangID": "s_zpPqL8C",
+      "masodonhang": "022205",
+      "ngaylapdonhang": "Friday, May 22, 2020 8:44 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "1000",
+          "b": "2000",
+          "c": "",
+          "a1": "",
+          "cong1": "16.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "2.009.600",
+          "soluong": "2",
+          "thanhtien": "4.019.200",
+          "loaihang": " Tấm - 8 ly: 1000*2000"
+        }
+      ]
+    },
+    {
+      "duno": "0",
+      "tongtien": "0",
+      "tenkhachhang": "lam thai son",
+      "sodienthoai": "0938752570",
+      "khachhangID": "s_zpPqL8C",
+      "masodonhang": "012205",
+      "ngaylapdonhang": "Friday, May 22, 2020 8:51 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": null
+    },
+    {
+      "duno": "0",
+      "tongtien": "54.636.000",
+      "tenkhachhang": "lam thai son",
+      "sodienthoai": "0938752570",
+      "khachhangID": "s_zpPqL8C",
+      "masodonhang": "012205",
+      "ngaylapdonhang": "Friday, May 22, 2020 8:56 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "2000",
+          "b": "3000",
+          "c": "",
+          "a1": "",
+          "cong1": "145.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "54.636.000",
+          "soluong": "1",
+          "thanhtien": "54.636.000",
+          "loaihang": " Tấm - 8 ly: 2000*3000"
+        }
+      ]
+    },
+    {
+      "duno": "0",
+      "tongtien": "46.723.200",
+      "tenkhachhang": "sinh le van",
+      "sodienthoai": "12312311231",
+      "khachhangID": "85sATRFbH",
+      "masodonhang": "022205",
+      "ngaylapdonhang": "Friday, May 22, 2020 8:56 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "3000",
+          "b": "2000",
+          "c": "",
+          "a1": "",
+          "cong1": "124.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "46.723.200",
+          "soluong": "1",
+          "thanhtien": "46.723.200",
+          "loaihang": " Tấm - 8 ly: 3000*2000"
+        }
+      ]
+    },
+    {
+      "duno": "0",
+      "tongtien": "37.680.000",
+      "tenkhachhang": "123qwesad",
+      "sodienthoai": "213123123123",
+      "khachhangID": "s8V9BfhYL",
+      "masodonhang": "012205",
+      "ngaylapdonhang": "Friday, May 22, 2020 9:05 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "1000",
+          "b": "2000",
+          "c": "",
+          "a1": "",
+          "cong1": "15.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "1.884.000",
+          "soluong": "20",
+          "thanhtien": "37.680.000",
+          "loaihang": " Tấm - 8 ly: 1000*2000"
+        }
+      ]
+    },
+    {
+      "duno": "0",
+      "tongtien": "18.840.000",
+      "tenkhachhang": "qweasdxc",
+      "sodienthoai": "123123123123",
+      "khachhangID": "rz0b-iti6g",
+      "masodonhang": "012205",
+      "ngaylapdonhang": "Friday, May 22, 2020 9:11 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "1000",
+          "b": "1000",
+          "c": "",
+          "a1": "",
+          "cong1": "15.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "942.000",
+          "soluong": "20",
+          "thanhtien": "18.840.000",
+          "loaihang": " Tấm - 8 ly: 1000*1000"
+        }
+      ]
+    },
+    {
+      "duno": "0",
+      "tongtien": "15.574.400",
+      "tenkhachhang": "abcdef",
+      "sodienthoai": "2135498798",
+      "khachhangID": "5XjCOHrur",
+      "masodonhang": "022205",
+      "ngaylapdonhang": "Friday, May 22, 2020 9:13 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "1000",
+          "b": "2000",
+          "c": "",
+          "a1": "",
+          "cong1": "124.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "15.574.400",
+          "soluong": "1",
+          "thanhtien": "15.574.400",
+          "loaihang": " Tấm - 8 ly: 1000*2000"
+        }
+      ]
+    },
+    {
+      "duno": "0",
+      "tongtien": "37.680.000",
+      "tenkhachhang": "lam thai son",
+      "sodienthoai": "0938752570",
+      "khachhangID": "s_zpPqL8C",
+      "masodonhang": "022205",
+      "ngaylapdonhang": "Friday, May 22, 2020 9:15 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "2000",
+          "b": "1000",
+          "c": "",
+          "a1": "",
+          "cong1": "15.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "1.884.000",
+          "soluong": "20",
+          "thanhtien": "37.680.000",
+          "loaihang": " Tấm - 8 ly: 2000*1000"
+        }
+      ]
+    },
+    {
+      "duno": "0",
+      "tongtien": "4.220.160",
+      "tenkhachhang": "lam thai son",
+      "sodienthoai": "0938752570",
+      "khachhangID": "s_zpPqL8C",
+      "masodonhang": "012205",
+      "ngaylapdonhang": "Friday, May 22, 2020 9:22 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "1200",
+          "b": "2000",
+          "c": "",
+          "a1": "",
+          "cong1": "14.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "2.110.080",
+          "soluong": "2",
+          "thanhtien": "4.220.160",
+          "loaihang": " Tấm - 8 ly: 1200*2000"
+        }
+      ]
+    },
+    {
+      "duno": "0",
+      "tongtien": "113.040.000",
+      "tenkhachhang": "abc",
+      "sodienthoai": "123213123123",
+      "khachhangID": "1kU4ROcA8",
+      "masodonhang": "022205",
+      "ngaylapdonhang": "Friday, May 22, 2020 9:22 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "2000",
+          "b": "3000",
+          "c": "",
+          "a1": "",
+          "cong1": "15.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "5.652.000",
+          "soluong": "20",
+          "thanhtien": "113.040.000",
+          "loaihang": " Tấm - 8 ly: 2000*3000"
+        }
+      ]
+    },
+    {
+      "duno": "0",
+      "tongtien": "18.840.000",
+      "tenkhachhang": "lam thai son",
+      "sodienthoai": "0938752570",
+      "khachhangID": "s_zpPqL8C",
+      "masodonhang": "012205",
+      "ngaylapdonhang": "Friday, May 22, 2020 9:44 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "1000",
+          "b": "1000",
+          "c": "",
+          "a1": "",
+          "cong1": "15.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "942.000",
+          "soluong": "20",
+          "thanhtien": "18.840.000",
+          "loaihang": " Tấm - 8 ly: 1000*1000"
+        }
+      ]
+    },
+    {
+      "duno": "0",
+      "tongtien": "50.240.000",
+      "tenkhachhang": "le van sinh",
+      "sodienthoai": "1234567896",
+      "khachhangID": "D8KDbwM_6",
+      "masodonhang": "022205",
+      "ngaylapdonhang": "Friday, May 22, 2020 9:44 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "2000",
+          "b": "2000",
+          "c": "",
+          "a1": "",
+          "cong1": "100.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "25.120.000",
+          "soluong": "2",
+          "thanhtien": "50.240.000",
+          "loaihang": " Tấm - 8 ly: 2000*2000"
+        }
+      ]
+    },
+    {
+      "duno": "0",
+      "tongtien": "68.295.000",
+      "tenkhachhang": "abcdef",
+      "sodienthoai": "2135498798",
+      "khachhangID": "5XjCOHrur",
+      "masodonhang": "032205",
+      "ngaylapdonhang": "Friday, May 22, 2020 9:44 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "10",
+          "donvitinh": "cai",
+          "a": "2000",
+          "b": "3000",
+          "c": "",
+          "a1": "",
+          "cong1": "145.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "68.295.000",
+          "soluong": "1",
+          "thanhtien": "68.295.000",
+          "loaihang": " Tấm - 10 ly: 2000*3000"
+        }
+      ]
     }
   ],
   "khachhang": [
@@ -134,6 +845,36 @@
       "tenkhachhang": "lam thai son",
       "sodienthoai": "0938752570",
       "khachhangID": "s_zpPqL8C"
+    },
+    {
+      "tenkhachhang": "le van sinh",
+      "sodienthoai": "1234567896",
+      "khachhangID": "D8KDbwM_6"
+    },
+    {
+      "tenkhachhang": "abc",
+      "sodienthoai": "123213123123",
+      "khachhangID": "1kU4ROcA8"
+    },
+    {
+      "tenkhachhang": "sinh le van",
+      "sodienthoai": "12312311231",
+      "khachhangID": "85sATRFbH"
+    },
+    {
+      "tenkhachhang": "123qwesad",
+      "sodienthoai": "213123123123",
+      "khachhangID": "s8V9BfhYL"
+    },
+    {
+      "tenkhachhang": "qweasdxc",
+      "sodienthoai": "123123123123",
+      "khachhangID": "rz0b-iti6g"
+    },
+    {
+      "tenkhachhang": "abcdef",
+      "sodienthoai": "2135498798",
+      "khachhangID": "5XjCOHrur"
     }
   ],
   "muahang": []

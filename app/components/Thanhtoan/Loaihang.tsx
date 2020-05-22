@@ -1,14 +1,15 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import loaihangState from './atoms/loaihang';
 
 import styles from './thanhtoan.css';
 
 export default function Loaihang() {
-  const [loaihang, setLoaiHang] = useRecoilState(loaihangState);
+  const loaihang = useRecoilValue(loaihangState);
+  const setLoaiHangState = useSetRecoilState(loaihangState);
   const onHandleSelect = e => {
-    setLoaiHang(e.target.value);
+    setLoaiHangState(e.target.value);
   };
 
   return (

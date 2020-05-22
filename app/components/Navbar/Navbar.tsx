@@ -6,7 +6,7 @@ import logoImage from '../assets/images/logo.png';
 import ThanhtoanLogo from '../assets/images/home-solid.svg';
 import QuanlyLogo from '../assets/images/archive-solid.svg';
 import MuahangLogo from '../assets/images/cart-arrow-down.svg';
-import ThongkeLogo from '../assets/images/suitcase-rolling.svg';
+import ThongkeLogo from '../assets/images/chart-bar-regular.svg';
 
 import routes from '../../constants/routes.json';
 

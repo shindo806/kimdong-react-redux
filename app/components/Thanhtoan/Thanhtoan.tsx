@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Message } from 'semantic-ui-react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { initialMaSoDonHang } from '../../utils/masodonhang';
 import { getKhachHang } from '../../dataAPI/connectDB';
 // state
-import loaihangState from './atoms/loaihang';
 
+import addItem from './atoms/addItem';
 // Components import
 import Thongtinchung from './Thongtinchung';
 import Xuathoadon from './Xuathoadon';
@@ -15,48 +15,23 @@ import Thongsochitiet from './Thongsochitiet';
 import Navbar from '../Navbar/Navbar';
 
 import styles from './thanhtoan.css';
+import { setKhachHangData } from '../../utils/localStorage';
+import loading from '../../utils/loadingApp';
 
-// interface Props {
-//   loaihangRender?: string;
-//   isAddItem?: boolean;
-//   data?: [];
-//   masodonhang?: string;
-// }
+// state
+import errorState from './atoms/warning-error';
+import masodonhang from './atoms/masodonhang';
 
 export default function Thanhtoan() {
-  const [loaihangRender, setLoaiHangRender] = useRecoilState(loaihangState); // State quản lý việc user chọn loaị hàng => render component thông số
-  const [isAddItem, setIsAddItem] = useState(false);
-
-  const [data, setData] = useState(() => {
-    const tempData = localStorage.getItem('tempData');
-    if (tempData !== null) {
-      return JSON.parse(tempData);
-    }
-    return [];
-  });
-  const [masodonhang, setMaSoDonHang] = useState(() => initialMaSoDonHang());
+  const error = useRecoilValue(errorState);
+  const setMaSoDonHang = useSetRecoilState(masodonhang);
   // Lấy dữ liệu khách hàng, set to localStorage
-  const khachHangData = getKhachHang();
-  if (khachHangData.length > 0) {
-    localStorage.setItem('khachhangData', JSON.stringify(khachHangData));
-  }
-  // Handle data change when user add item
+  setKhachHangData(getKhachHang());
+  // Khởi tạo basic data
   useEffect(() => {
-    if (isAddItem) {
-      const tempData = localStorage.getItem('tempData');
-      if (tempData !== null) {
-        setData(JSON.parse(tempData));
-      }
-    }
-    setTimeout(() => {
-      setIsAddItem(false);
-    }, 4200);
-  }, [isAddItem]);
-  // Reset UI when user save data
-  useEffect(() => {
-    setData([]);
-    // setMaSoDonHang(props.masodonhang);
-  }, [masodonhang]);
+    loading();
+    setMaSoDonHang(JSON.parse(localStorage.getItem('masodonhang')));
+  }, []);
   return (
     <div>
       {/* Navbar */}
@@ -68,6 +43,12 @@ export default function Thanhtoan() {
         </div>
       </section>
       {/* header */}
+      {/* Warning - Error */}
+      {error ? (
+        <Message className={`${styles.ui} ${styles.message} ${styles.error}`}>
+          <Message.Header>{error}</Message.Header>
+        </Message>
+      ) : null}
       <div className="main-panel" style={{ padding: '20px' }}>
         <div className={styles['container-fluid']}>
           <div className={styles.row}>
@@ -76,16 +57,12 @@ export default function Thanhtoan() {
               <div className={styles['left-panel']} id="left-panel">
                 <div className="main-content">
                   {/* Thông tin chung của khách mua hàng: Tên, sdt, mã số đơn hàng trong ngày, ngày mua hàng */}
-                  <Thongtinchung masodonhang={masodonhang} />
+                  <Thongtinchung />
                   {/* Thông tin chi tiết của đơn hàng theo khách hàng xác định */}
-                  {/* <Thongo
-                    isAddItem={isAddItem}
-                    setIsAddItem={setIsAddItem}
-                  /> */}
-                  <Thongsochitiet data={data} isReRender={isAddItem} />
+                  <Thongsochitiet />
                 </div>
                 {/* Xuất hoá đơn - Lưu đơn hàng */}
-                <Xuathoadon setMaSoDonHang={setMaSoDonHang} />
+                <Xuathoadon />
               </div>
             </div>
             {/* Right panel */}
@@ -114,9 +91,8 @@ export default function Thanhtoan() {
                       {/* Select loại hàng */}
                       <Loaihang />
                       {/* Nhập thông số loại hàng */}
-                      <Thongso setIsAddItem={setIsAddItem} setData={setData} />
+                      <Thongso />
                       {/* Thêm - Sửa */}
-
                       <div
                         id="saveEditItem"
                         className={`${styles.visible} save-edit-item`}
@@ -127,10 +103,6 @@ export default function Thanhtoan() {
               </div>
             </div>
           </div>
-          {/* Thông báo thêm hoá đơn thành công */}
-          {isAddItem ? (
-            <Message success header="Thêm một đơn hàng thành công" />
-          ) : null}
           {/* end of right-panel */}
         </div>
       </div>

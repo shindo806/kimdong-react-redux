@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { Message } from 'semantic-ui-react';
 
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 // Utils
-import xuLyTieuDeLoaiThep from 'utils/xulytieudeloaithep';
-import { luuDuLieuTamThoi } from 'utils/localStorage';
-import { formatNumber, toNumber } from 'utils/xulynumber';
-import getDomIdElement from 'utils/getDomElement';
+import xuLyTieuDeLoaiThep from '../../utils/xulytieudeloaithep';
+import { luuDuLieuTamThoi } from '../../utils/localStorage';
+import { formatNumber, toNumber } from '../../utils/xulynumber';
+import getDomIdElement from '../../utils/getDomElement';
+import * as congthuc from '../../utils/tinhtien';
 // State
 import loaihangState from './atoms/loaihang';
+import addItemState from './atoms/addItem';
 
-import * as congthuc from '../../utils/tinhtien';
-
+// Styles
 import styles from './thanhtoan.css';
 
-export default function Thongso(props) {
+export default function Thongso() {
   // props.loaihangRender  = "default"  - thongso initial = []
-  const kihieuThep = useRecoilValue(loaihangState);
+  let loaithep = [];
+  const [kihieuThep, setKiHieuThep] = useRecoilState(loaihangState); // kihieuThep: 'default'
+  const [isAddItem, setIsAddItem] = useRecoilState(addItemState);
+
   const [loaihang, setLoaiHang] = useState([]);
 
   const [thongso1, setThongSo1] = useState({
@@ -39,8 +43,9 @@ export default function Thongso(props) {
     soluong: 0,
     thanhtien: 0
   });
+
   const [error, setError] = useState('');
-  let loaithep = [];
+
   const handleLoaiHangChange = (string: string) => {
     switch (string) {
       case 'T1':
@@ -123,8 +128,6 @@ export default function Thongso(props) {
       'Thông số loại hàng: ';
     // Render thông số theo loại thép mà user chọn
     setLoaiHang(handleLoaiHangChange(kihieuThep));
-    console.log('ki hieu thep', kihieuThep);
-    console.log('loai hang array', loaithep);
     // Reset input field về default
     setThongSo1({
       dai: '',
@@ -154,19 +157,25 @@ export default function Thongso(props) {
 
   // Trigger when user want to add item to localStorage
   const handleAddItem = () => {
-    // const donhang = {
-    //   ...thongso1,
-    //   ...thongso2,
-    //   ...thongso3,
-    //   loaihang: document.getElementById('result-loaihang').innerText // lấy thông tin loại hàng để render
-    // };
-    // const saveStatus = luuDuLieuTamThoi(donhang);
-    // if (saveStatus) {
-    //   props.setLoaiHangRender('default');
-    //   // send status back to parent component
-    //   props.setIsAddItem(true);
-    // }
-    console.log('save item');
+    const donhang = {
+      ...thongso1,
+      ...thongso2,
+      ...thongso3,
+      loaihang: document.getElementById('result-loaihang').innerText // lấy thông tin loại hàng để render
+    };
+    const saveStatus = luuDuLieuTamThoi(donhang);
+
+    if (saveStatus) {
+      // reset loaihangState to 'default';
+      setKiHieuThep('default');
+      setLoaiHang([]);
+
+      // set state addItem
+      setIsAddItem(true);
+      setTimeout(() => {
+        setIsAddItem(false);
+      }, 3500);
+    }
   };
 
   // Handle Input Change: 3 type
@@ -180,17 +189,16 @@ export default function Thongso(props) {
     newState[`${elementID}`] = elementIDValue;
     setThongSo1(newState);
     // Render tiêu đề loại thép
-    xuLyTieuDeLoaiThep(loaihang, newState);
+    xuLyTieuDeLoaiThep(kihieuThep, newState);
   };
   const handleTrigger1 = (typeofValue, event) => {
     // Nhiệm vụ của function này là trigger function tính đơn giá và thành tiền mỗi lần user thay đổi giá trị các ô type1
-
     if (event.key === 'Tab') {
       const thongso = {
         ...thongso1,
         ...thongso2
       };
-      let dongia = congthuc.tinhdongia(props.loaihangRender, thongso);
+      let dongia = congthuc.tinhdongia(kihieuThep, thongso);
       if (isNaN(dongia)) {
         dongia = 0;
       }
@@ -270,7 +278,7 @@ export default function Thongso(props) {
         ...thongso1,
         ...newThongSo2
       };
-      let dongia = congthuc.tinhdongia(props.loaihangRender, thongso);
+      let dongia = congthuc.tinhdongia(kihieuThep, thongso);
       if (isNaN(dongia)) {
         dongia = 0;
       }
@@ -324,7 +332,7 @@ export default function Thongso(props) {
     // 1. chuyển định dạng user nhập 15 -> 15.000 khi press tab key
     // 2. tính đơn giá và thành tiền mỗi lần user thay đổi giá trị các ô type1
     if (elementID === 'dongia') {
-      if ((event.key === 'Tab') | (event.key === 'Enter')) {
+      if (event.key === 'Tab' || event.key === 'Enter') {
         const dongia = getDomIdElement(`${elementID}`).value;
         // TH1: Có giá trị sẵn do tính từ công thức và setState3
         if (dongia.includes('.')) {
@@ -357,13 +365,18 @@ export default function Thongso(props) {
   };
   return (
     <>
-      <Message
-        className={
-          error ? `${styles.ui} ${styles.message} ${styles.error}` : ''
-        }
-      >
-        {error}
-      </Message>
+      {/* Thông báo thêm hoá đơn thành công */}
+      {isAddItem ? (
+        <Message
+          className={`${styles.success} ${styles.ui} ${styles.message}`}
+          header="Thêm một đơn hàng thành công"
+        />
+      ) : null}
+      {error !== '' ? (
+        <Message className={`${styles.ui} ${styles.message} ${styles.error}`}>
+          {error}
+        </Message>
+      ) : null}
       <div
         id="thong-so"
         className={loaihang.length === 0 ? styles.close : styles['thong-so']}

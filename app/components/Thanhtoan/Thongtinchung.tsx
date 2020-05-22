@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import shortid from 'shortid';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import Autosuggest from 'react-autosuggest';
 
-import { initialMaSoDonHang } from 'utils/masodonhang';
-import { taoNgayLapDonHang } from 'utils/taoNgayLapDonHang';
-import { setTempKhachHangInfo } from 'utils/localStorage';
+import { taoNgayLapDonHang } from '../../utils/taoNgayLapDonHang';
+import { setTempKhachHangInfo } from '../../utils/localStorage';
+
+// state
+import masodonhangState from './atoms/masodonhang';
 
 import styles from './thanhtoan.css';
+import tenkhachhang from './atoms/tenkhachhang';
+import sodienthoai from './atoms/sodienthoai';
 
 export default function Thongtinchung(props) {
   const [ngaylapdonhang, setNgayLapDonHang] = useState(() =>
     taoNgayLapDonHang()
   );
-  const [masodonhang, setMaSoDonHang] = useState(() => props.masodonhang);
-  useEffect(() => {
-    setValue('');
-    setSodienthoai('');
-  }, [props.masodonhang]);
-  useEffect(() => {
-    setMaSoDonHang(props.masodonhang);
-  }, [props.masodonhang]);
-  const [value, setValue] = useState('');
-  const [sdt, setSodienthoai] = useState('');
+  const masodonhang = useRecoilValue(masodonhangState);
+
+  const [value, setValue] = useRecoilState(tenkhachhang);
+  const [sdt, setSodienthoai] = useRecoilState(sodienthoai);
+
   const [suggestions, setSuggestions] = useState([]);
 
   const [khachhangs, setKhachHangs] = useState(() =>
@@ -29,18 +29,22 @@ export default function Thongtinchung(props) {
       ? JSON.parse(localStorage.getItem('khachhangData'))
       : []
   );
+  // Update new khachhangData when app had new user
+  useEffect(() => {
+    setKhachHangs(JSON.parse(localStorage.getItem('khachhangData')));
+  }, [masodonhang]);
 
   const onChange = (event, { newValue, method }) => {
     setValue(newValue);
   };
-  const handleTenKhachHang = tenkhachhang => {
-    if (tenkhachhang === '') {
+  const handleTenKhachHang = tenkhachhangParams => {
+    if (tenkhachhangParams === '') {
       setSodienthoai('');
       localStorage.removeItem('tempKhachHangInfo');
       return;
     }
     const matched = khachhangs.filter(
-      khachhang => khachhang.tenkhachhang === tenkhachhang
+      khachhang => khachhang.tenkhachhang === tenkhachhangParams
     );
     if (matched.length === 0) {
       setSodienthoai('');
@@ -62,8 +66,6 @@ export default function Thongtinchung(props) {
   const onHandleTenKhachHangPress = event => {
     if (event.key === 'Tab' || event.key === 'Enter') {
       handleTenKhachHang(value);
-    } else if (event.key === 'Backspace') {
-      handleTenKhachHang('');
     }
   };
 
@@ -77,9 +79,9 @@ export default function Thongtinchung(props) {
     onKeyDown: onHandleTenKhachHangPress,
     onBlur: onHandleTenKhachHangBlur
   };
-  const handleSodienthoai = sodienthoai => {
+  const handleSodienthoai = sodienthoaiParams => {
     const matched = khachhangs.filter(
-      khachhang => khachhang.sodienthoai === sodienthoai
+      khachhang => khachhang.sodienthoai === sodienthoaiParams
     );
     if (matched.length === 0) {
       setTempKhachHangInfo({
@@ -109,7 +111,7 @@ export default function Thongtinchung(props) {
   const onHandleSdtBlur = () => {
     handleSodienthoai(sdt);
   };
-  // https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
+
   function escapeRegexCharacters(str) {
     return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
@@ -158,7 +160,7 @@ export default function Thongtinchung(props) {
             </div>
             <div className={styles['title-info-row']}>
               <p>Mã số đơn hàng:</p>
-              <p id="don-hang-id">{masodonhang}</p>
+              <p id="don-hang-id">{masodonhang[masodonhang.length - 1]}</p>
             </div>
           </div>
         </div>
