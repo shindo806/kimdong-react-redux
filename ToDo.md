@@ -7,8 +7,10 @@ thể interact với các ô input.
 
 [] - Fix trường hợp không chọn loại hàng từ mục select được
 
-[] - Thay đổi cách render masodonhang (21/05/2020)
+[] - Tạo function render masodonhang khi tìm kiếm tên khách hàng trong ngày
 
-[] - Load lại khachhangData khi có khách hàng mới mua hàng lần đầu tiên
+[x] - Thay đổi cách render masodonhang (21/05/2020)
+
+[x] - Load lại khachhangData khi có khách hàng mới mua hàng lần đầu tiên
 
 [x] - Fix autocomplete feature - Try to autocomplete from old project

@@ -1,23 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import shortid from 'shortid';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 import Autosuggest from 'react-autosuggest';
 
 import { taoNgayLapDonHang } from '../../utils/taoNgayLapDonHang';
 import { setTempKhachHangInfo } from '../../utils/localStorage';
 
+// Database
+import { getDataByNameAndMaSoDonHang } from '../../dataAPI/connectDB';
 // state
 import masodonhangState from './atoms/masodonhang';
 
 import styles from './thanhtoan.css';
 import tenkhachhang from './atoms/tenkhachhang';
 import sodienthoai from './atoms/sodienthoai';
+import tempData from './atoms/tempData';
 
-export default function Thongtinchung(props) {
+export default function Thongtinchung() {
+  const [data, setTempData] = useRecoilState(tempData);
   const [ngaylapdonhang, setNgayLapDonHang] = useState(() =>
     taoNgayLapDonHang()
   );
-  const masodonhang = useRecoilValue(masodonhangState);
+  const [masodonhang, setMaSoDonHang] = useRecoilState(masodonhangState);
 
   const [value, setValue] = useRecoilState(tenkhachhang);
   const [sdt, setSodienthoai] = useRecoilState(sodienthoai);
@@ -34,13 +38,30 @@ export default function Thongtinchung(props) {
     setKhachHangs(JSON.parse(localStorage.getItem('khachhangData')));
   }, [masodonhang]);
 
+  useEffect(() => {
+    if (value === '' || value === null || value === undefined) {
+      localStorage.removeItem('tempData');
+      setTempData([]);
+    }
+  }, [value]);
   const onChange = (event, { newValue, method }) => {
     setValue(newValue);
   };
+
   const handleTenKhachHang = tenkhachhangParams => {
-    if (tenkhachhangParams === '') {
+    if (
+      tenkhachhangParams === '' ||
+      tenkhachhangParams === null ||
+      tenkhachhangParams === undefined
+    ) {
       setSodienthoai('');
       localStorage.removeItem('tempKhachHangInfo');
+      // xoa tempdata ve render lai table
+      localStorage.removeItem('tempData');
+      setTempData([]);
+      // render lai masodonhang
+      const masodonhangArr = JSON.parse(localStorage.getItem('masodonhang'));
+      setMaSoDonHang(masodonhangArr[masodonhangArr.length - 1]);
       return;
     }
     const matched = khachhangs.filter(
@@ -63,9 +84,35 @@ export default function Thongtinchung(props) {
       khachhangID: matched[0].khachhangID
     });
   };
+
+  const maSoDonHangTrongNgay = name => {
+    const khachHangTrongNgay = JSON.parse(
+      localStorage.getItem('muaHangTrongNgay')
+    );
+    if (khachHangTrongNgay === null) return false;
+    const matched = khachHangTrongNgay.filter(
+      khachhangInfo => khachhangInfo.tenkhachhang.trim() === name.trim()
+    );
+    return matched[0];
+  };
   const onHandleTenKhachHangPress = event => {
     if (event.key === 'Tab' || event.key === 'Enter') {
       handleTenKhachHang(value);
+      const matchedObj = maSoDonHangTrongNgay(value);
+      if (matchedObj === undefined) {
+        return setTempData([]);
+      }
+      if (matchedObj !== undefined || matchedObj !== null) {
+        const dataFromDB = getDataByNameAndMaSoDonHang(matchedObj);
+        setTempData(dataFromDB.thongtindonhang);
+        // Set lại masodonhang cũ thông qua state masodonhang atom
+        setMaSoDonHang(dataFromDB.masodonhang);
+        // Set back to tempData to edit/add-new-item
+        localStorage.setItem(
+          'tempData',
+          JSON.stringify(dataFromDB.thongtindonhang)
+        );
+      }
     }
   };
 
@@ -160,7 +207,7 @@ export default function Thongtinchung(props) {
             </div>
             <div className={styles['title-info-row']}>
               <p>Mã số đơn hàng:</p>
-              <p id="don-hang-id">{masodonhang[masodonhang.length - 1]}</p>
+              <p id="don-hang-id">{masodonhang}</p>
             </div>
           </div>
         </div>

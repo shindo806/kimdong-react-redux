@@ -16,25 +16,26 @@ function xoaDuLieuTamThoi() {
 }
 
 function muaHangTrongNgay(khachhangInfo) {
-  const muaHangTrongNgay = localStorage.getItem('muaHangTrongNgay')
+  const muaHangTrongNgayData = localStorage.getItem('muaHangTrongNgay')
     ? JSON.parse(localStorage.getItem('muaHangTrongNgay'))
     : [];
   // khachhangInfo : { tenkhachhang, khachhangID, masodonhang }
-  if (muaHangTrongNgay.length === 0) {
-    muaHangTrongNgay.push(khachhangInfo);
-    localStorage.setItem('muaHangTrongNgay', JSON.stringify(muaHangTrongNgay));
+  if (muaHangTrongNgayData === null) {
+    muaHangTrongNgayData.push(khachhangInfo);
+    localStorage.setItem(
+      'muaHangTrongNgay',
+      JSON.stringify(muaHangTrongNgayData)
+    );
   } else {
-    const matchedKhachHang = muaHangTrongNgay.filter(
+    const matchedKhachHang = muaHangTrongNgayData.filter(
       item => item.khachhangID === khachhangInfo.khachhangID
     );
     if (!matchedKhachHang.length) {
-      muaHangTrongNgay.push(khachhangInfo);
+      muaHangTrongNgayData.push(khachhangInfo);
       localStorage.setItem(
         'muaHangTrongNgay',
-        JSON.stringify(muaHangTrongNgay)
+        JSON.stringify(muaHangTrongNgayData)
       );
-    } else {
-      console.log('khach hang mua >2 don hang/ngay');
     }
   }
 }
@@ -60,6 +61,12 @@ function removeTempData() {
   return true;
 }
 
+function resetLocalStorage() {
+  localStorage.removeItem('masodonhang');
+  localStorage.removeItem('tempData');
+  localStorage.removeItem('muaHangTrongNgay');
+}
+
 export {
   luuDuLieuTamThoi,
   xoaDuLieuTamThoi,
@@ -67,5 +74,6 @@ export {
   setMaSoDonHang,
   setTempKhachHangInfo,
   setKhachHangData,
-  removeTempData
+  removeTempData,
+  resetLocalStorage
 };

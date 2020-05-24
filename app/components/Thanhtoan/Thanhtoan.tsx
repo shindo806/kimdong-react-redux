@@ -30,7 +30,8 @@ export default function Thanhtoan() {
   // Khởi tạo basic data
   useEffect(() => {
     loading();
-    setMaSoDonHang(JSON.parse(localStorage.getItem('masodonhang')));
+    const masodonhangArr = JSON.parse(localStorage.getItem('masodonhang'));
+    setMaSoDonHang(masodonhangArr[masodonhangArr.length - 1]);
   }, []);
   return (
     <div>

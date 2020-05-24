@@ -34,7 +34,7 @@ const Thongsochitiet = () => {
   function createRenderEl() {
     // Table
     let renderElement;
-    if (data === null) {
+    if (data === null || data.length === 0) {
       renderElement = (
         <Table.Row>
           <Table.Cell textAlign="center" className="narrow">

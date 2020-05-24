@@ -5,7 +5,7 @@ const FileSync = require('lowdb/adapters/FileSync');
 
 const adapter = new FileSync('db.json');
 const db = low(adapter);
-const shortid = require('shortid');
+
 // Set some defaults
 db.defaults({
   donhang: [],
@@ -35,8 +35,52 @@ const muahangSampleData = [
     ID: '9d5fGc7YmHG77tALk0WYU4klc4Evwb9s'
   }
 ];
+
 const getAllData = () => {
   return db.read().value();
+};
+
+// Khach hang
+const getKhachHang = () => {
+  const khachhangData = db.get('khachhang').value();
+  return khachhangData;
+};
+
+const addKhachHang = khachhangInfo => {
+  db.get('khachhang')
+    .push(khachhangInfo)
+    .write();
+};
+
+interface FindingDonHang {
+  masodonhang: string;
+  tenkhachhang?: string;
+}
+// Tìm kiếm đơn hàng theo tên khách hàng và masodonhang
+const getDataByNameAndMaSoDonHang = (params: FindingDonHang) => {
+  if (params === undefined || params.masodonhang === '') return null;
+  const data = db
+    .get('donhang')
+    .find({ masodonhang: params.masodonhang })
+    .value();
+  return data;
+};
+
+// Lưu đơn hàng mới
+const postNewDonHang = donhang => {
+  console.log('luu 1 don hang moi');
+  // db.get('donhang')
+  //   .push(donhang)
+  //   .write();
+};
+
+// Lưu đơn hàng EDIT
+const postUpdateDonHang = donhang => {
+  console.log('luu 1 don hang chinh sua');
+  // db.get('donhang')
+  //   .find({ masodonhang: donhang.masodonhang })
+  //   .assign(donhang)
+  //   .write();
 };
 
 const postLuuDonHang = donhang => {
@@ -68,24 +112,28 @@ const postLuuDonHang = donhang => {
       });
     }
   }
-
+  const isMaSoDonHangExist = db
+    .get('donhang')
+    .find({
+      masodonhang: donhang.masodonhang
+    })
+    .value();
+  console.log(isMaSoDonHangExist);
+  if (isMaSoDonHangExist !== undefined) {
+    postUpdateDonHang(donhang);
+  } else {
+    postNewDonHang(donhang);
+  }
   // TH2: Không tồn tại khách hàng
-  db.get('donhang')
-    .push(donhang)
-    .write();
-  return true;
+  // db.get('donhang')
+  //   .push(donhang)
+  //   .write();
+  // return true;
 };
 
-// Khach hang
-const getKhachHang = () => {
-  const khachhangData = db.get('khachhang').value();
-  return khachhangData;
+export {
+  getAllData,
+  postLuuDonHang,
+  getKhachHang,
+  getDataByNameAndMaSoDonHang
 };
-
-const addKhachHang = khachhangInfo => {
-  db.get('khachhang')
-    .push(khachhangInfo)
-    .write();
-};
-
-export { getAllData, postLuuDonHang, getKhachHang };

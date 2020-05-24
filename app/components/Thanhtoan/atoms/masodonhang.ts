@@ -2,7 +2,7 @@ import { atom } from 'recoil';
 
 const masodonhangState = atom({
   key: 'masodonhangState',
-  default: []
+  default: ''
 });
 
 export default masodonhangState;

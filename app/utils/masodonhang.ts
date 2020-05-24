@@ -20,20 +20,7 @@ function initialMaSoDonHang() {
     currentMonth = `0${currentMonth}`;
   }
   const newMaSoDonHang = `01${currentDay}${currentMonth}`;
-  const masodonhangArray = JSON.parse(localStorage.getItem('masodonhang'));
-  // detect first time the app run on user computer
-  if (masodonhangArray === null) {
-    console.log('first time running the app');
-    localStorage.setItem('masodonhang', JSON.stringify([newMaSoDonHang]));
-  }
-  // detect old day and new day
-  else if (masodonhangArray !== null) {
-    console.log('more than 1 time');
-    const oldMaSoDonHang = masodonhangArray[0][2] + masodonhangArray[0][3];
-    if (oldMaSoDonHang !== currentDay) {
-      localStorage.setItem('masodonhang', JSON.stringify([newMaSoDonHang]));
-    }
-  }
+  localStorage.setItem('masodonhang', JSON.stringify([newMaSoDonHang]));
 }
 
 function taoMaSoDonHang() {

@@ -68,7 +68,8 @@ export default function Xuathoadon(props) {
     // tạo mã số đơn hàng mới
     const newMaSoDonHang = taoMaSoDonHang();
     luuMaSoDonHang(newMaSoDonHang);
-    setMaSoDonHang(JSON.parse(localStorage.getItem('masodonhang')));
+    const masodonhangArr = JSON.parse(localStorage.getItem('masodonhang'));
+    setMaSoDonHang(masodonhangArr[masodonhangArr.length - 1]);
     // Loai lai thong tin khach hang
     setKhachHangData(getKhachHang());
     // Delete temp data on localStorage
