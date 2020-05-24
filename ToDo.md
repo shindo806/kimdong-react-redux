@@ -1,13 +1,13 @@
 ### Fix error
 
-[] - Khi người dùng nhập sai giá trị chữ/số => Alert => Tắt Alert xong không
+[x] - Khi người dùng nhập sai giá trị chữ/số => Alert => Tắt Alert xong không
 thể interact với các ô input.
 
 [] - Chưa làm tròn kết quả tính tiền, tính đơn giá
 
 [] - Fix trường hợp không chọn loại hàng từ mục select được
 
-[] - Tạo function render masodonhang khi tìm kiếm tên khách hàng trong ngày
+[x] - Tạo function render masodonhang khi tìm kiếm tên khách hàng trong ngày
 
 [x] - Thay đổi cách render masodonhang (21/05/2020)
 
