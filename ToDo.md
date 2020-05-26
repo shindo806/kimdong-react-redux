@@ -15,6 +15,6 @@ thể interact với các ô input.
 
 [x] - Fix autocomplete feature - Try to autocomplete from old project
 
-[] - Xây dựng lại function tìm kiếm tên -> masodonhang
+[x] - Xây dựng lại function tìm kiếm tên -> masodonhang
 -- Nhập tên khách hàng -> xóa -> render masodonhang mới nhất
 -- Nhập tên khách hàng cũ -> xóa -> nhập tên khách hàng mới -> render masodonhang mới nhất

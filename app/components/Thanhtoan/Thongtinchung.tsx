@@ -111,6 +111,9 @@ export default function Thongtinchung() {
         sodienthoai: sdt,
         khachhangID: shortid.generate()
       });
+      // render lai masodonhang
+      const masodonhangArr = JSON.parse(localStorage.getItem('masodonhang'));
+      setMaSoDonHang(masodonhangArr[masodonhangArr.length - 1]);
       return;
     }
     // Tim duoc user => set Sodienthoai
@@ -137,7 +140,6 @@ export default function Thongtinchung() {
     if (event.key === 'Tab' || event.key === 'Enter') {
       handleTenKhachHang(value);
       const matchedObj = maSoDonHangTrongNgay(value);
-      console.log(matchedObj);
       if (
         matchedObj === false ||
         matchedObj === null ||
@@ -147,7 +149,6 @@ export default function Thongtinchung() {
       }
       if (matchedObj !== false || matchedObj !== null) {
         const dataFromDB = getDataByNameAndMaSoDonHang(matchedObj);
-        console.log(dataFromDB);
         setTempData(dataFromDB.thongtindonhang);
         // Set lại masodonhang cũ thông qua state masodonhang atom
         setMaSoDonHang(dataFromDB.masodonhang);
