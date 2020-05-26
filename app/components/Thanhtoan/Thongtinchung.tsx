@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import shortid from 'shortid';
-import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import Autosuggest from 'react-autosuggest';
 
 import { taoNgayLapDonHang } from '../../utils/taoNgayLapDonHang';
@@ -33,6 +33,7 @@ export default function Thongtinchung() {
       ? JSON.parse(localStorage.getItem('khachhangData'))
       : []
   );
+
   // Update new khachhangData when app had new user
   useEffect(() => {
     setKhachHangs(JSON.parse(localStorage.getItem('khachhangData')));
@@ -44,10 +45,45 @@ export default function Thongtinchung() {
       setTempData([]);
     }
   }, [value]);
+
+  // Built-in function of react-autosuggest
+  function escapeRegexCharacters(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function getSuggestions(value) {
+    const escapedValue = escapeRegexCharacters(value.trim());
+
+    if (escapedValue === '') {
+      return [];
+    }
+
+    return khachhangs.filter(khachhang =>
+      khachhang.tenkhachhang.includes(value)
+    );
+  }
+
+  function getSuggestionValue(suggestion) {
+    return suggestion.tenkhachhang;
+  }
+
+  function renderSuggestion(suggestion) {
+    return <span>{suggestion.tenkhachhang}</span>;
+  }
+
+  const onSuggestionsFetchRequested = ({ value }) => {
+    setSuggestions(getSuggestions(value));
+  };
+
+  const onSuggestionsClearRequested = () => {
+    setSuggestions([]);
+  };
+
+  // Tenkhachhang Event Handler
   const onChange = (event, { newValue, method }) => {
     setValue(newValue);
   };
-
+  // Xử lý số điện thoại, tempKhachHangInfo, tempData (edit dữ liệu trong ngày)
   const handleTenKhachHang = tenkhachhangParams => {
     if (
       tenkhachhangParams === '' ||
@@ -67,7 +103,8 @@ export default function Thongtinchung() {
     const matched = khachhangs.filter(
       khachhang => khachhang.tenkhachhang === tenkhachhangParams
     );
-    if (matched.length === 0) {
+
+    if (matched === null || matched.length === 0) {
       setSodienthoai('');
       setTempKhachHangInfo({
         tenkhachhang: value,
@@ -84,7 +121,7 @@ export default function Thongtinchung() {
       khachhangID: matched[0].khachhangID
     });
   };
-
+  // Tìm kiếm thông tin của khách hàng mua hàng trong ngày
   const maSoDonHangTrongNgay = name => {
     const khachHangTrongNgay = JSON.parse(
       localStorage.getItem('muaHangTrongNgay')
@@ -95,15 +132,22 @@ export default function Thongtinchung() {
     );
     return matched[0];
   };
+  // Trigger when use done of typing or press tab/enter key
   const onHandleTenKhachHangPress = event => {
     if (event.key === 'Tab' || event.key === 'Enter') {
       handleTenKhachHang(value);
       const matchedObj = maSoDonHangTrongNgay(value);
-      if (matchedObj === undefined) {
+      console.log(matchedObj);
+      if (
+        matchedObj === false ||
+        matchedObj === null ||
+        matchedObj === undefined
+      ) {
         return setTempData([]);
       }
-      if (matchedObj !== undefined || matchedObj !== null) {
+      if (matchedObj !== false || matchedObj !== null) {
         const dataFromDB = getDataByNameAndMaSoDonHang(matchedObj);
+        console.log(dataFromDB);
         setTempData(dataFromDB.thongtindonhang);
         // Set lại masodonhang cũ thông qua state masodonhang atom
         setMaSoDonHang(dataFromDB.masodonhang);
@@ -157,38 +201,6 @@ export default function Thongtinchung() {
   };
   const onHandleSdtBlur = () => {
     handleSodienthoai(sdt);
-  };
-
-  function escapeRegexCharacters(str) {
-    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  }
-
-  function getSuggestions(value) {
-    const escapedValue = escapeRegexCharacters(value.trim());
-
-    if (escapedValue === '') {
-      return [];
-    }
-
-    return khachhangs.filter(khachhang =>
-      khachhang.tenkhachhang.includes(value)
-    );
-  }
-
-  function getSuggestionValue(suggestion) {
-    return suggestion.tenkhachhang;
-  }
-
-  function renderSuggestion(suggestion) {
-    return <span>{suggestion.tenkhachhang}</span>;
-  }
-
-  const onSuggestionsFetchRequested = ({ value }) => {
-    setSuggestions(getSuggestions(value));
-  };
-
-  const onSuggestionsClearRequested = () => {
-    setSuggestions([]);
   };
 
   return (

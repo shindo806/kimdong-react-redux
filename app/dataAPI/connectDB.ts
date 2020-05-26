@@ -69,9 +69,9 @@ const getDataByNameAndMaSoDonHang = (params: FindingDonHang) => {
 // Lưu đơn hàng mới
 const postNewDonHang = donhang => {
   console.log('luu 1 don hang moi');
-  // db.get('donhang')
-  //   .push(donhang)
-  //   .write();
+  db.get('donhang')
+    .push(donhang)
+    .write();
 };
 
 // Lưu đơn hàng EDIT
@@ -118,7 +118,7 @@ const postLuuDonHang = donhang => {
       masodonhang: donhang.masodonhang
     })
     .value();
-  console.log(isMaSoDonHangExist);
+
   if (isMaSoDonHangExist !== undefined) {
     postUpdateDonHang(donhang);
   } else {
