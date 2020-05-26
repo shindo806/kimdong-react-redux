@@ -74,12 +74,12 @@
     },
     {
       "duno": "0",
-      "tongtien": "23.550.000",
+      "tongtien": "42.390.000",
       "tenkhachhang": "lam thai son",
       "sodienthoai": "0938752570",
       "khachhangID": "s_zpPqL8C",
       "masodonhang": "012605",
-      "ngaylapdonhang": "Tuesday, May 26, 2020 2:43 PM",
+      "ngaylapdonhang": "Tuesday, May 26, 2020 2:52 PM",
       "trangthaigiacong": false,
       "thongtindonhang": [
         {
@@ -97,6 +97,22 @@
           "soluong": "10",
           "thanhtien": "23.550.000",
           "loaihang": " Tấm - 10 ly: 1000*1500"
+        },
+        {
+          "dai": "",
+          "day": "8",
+          "donvitinh": "cai",
+          "a": "2000",
+          "b": "1000",
+          "c": "",
+          "a1": "",
+          "cong1": "15.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "1.884.000",
+          "soluong": "10",
+          "thanhtien": "18.840.000",
+          "loaihang": " Tấm - 8 ly: 2000*1000"
         }
       ]
     }

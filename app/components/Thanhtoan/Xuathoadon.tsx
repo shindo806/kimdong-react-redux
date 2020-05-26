@@ -27,11 +27,12 @@ export default function Xuathoadon(props) {
   const setError = useSetRecoilState(errorState);
 
   const luuDonHang = () => {
+    const masodonhangArr = JSON.parse(localStorage.getItem('masodonhang'));
+
     const tongtien = document.querySelector('#thanhtien-render').innerText;
     const thanhtoan = document.querySelector('#thanhtoan-render').value;
     const duno = document.querySelector('#duno-render').innerText;
     const khachhangInfo = JSON.parse(localStorage.getItem('tempKhachHangInfo')); // {ten, khachhangID, sdt}
-    const masodonhang = document.querySelector('#don-hang-id').innerText;
 
     const ngaylapdonhang = moment().format('LLLL');
     const trangthaigiacong = false;
@@ -56,20 +57,27 @@ export default function Xuathoadon(props) {
       trangthaigiacong,
       thongtindonhang: tatcadonhang
     };
-
+    // checking is add new item or save edit item
+    // Add new item
+    if (masodonhang === masodonhangArr[masodonhangArr.length - 1]) {
+      console.log('don hang moi');
+      // Luu thong tin khach mua hang trong ngay vao localStorage
+      muaHangTrongNgay({
+        tenkhachhang: khachhangInfo.tenkhachhang,
+        khachhangID: khachhangInfo.khachhangID,
+        masodonhang
+      });
+      // tạo mã số đơn hàng mới
+      const newMaSoDonHang = taoMaSoDonHang();
+      luuMaSoDonHang(newMaSoDonHang);
+      setMaSoDonHang(masodonhangArr[masodonhangArr.length - 1]);
+    }
+    if (masodonhang !== masodonhangArr[masodonhangArr.length - 1]) {
+      console.log('edit don hang');
+      setMaSoDonHang(masodonhangArr[masodonhangArr.length - 1]);
+    }
     // Luu don hang vao database
     postLuuDonHang(donhang);
-    // Luu thong tin khach mua hang trong ngay vao localStorage
-    muaHangTrongNgay({
-      tenkhachhang: khachhangInfo.tenkhachhang,
-      khachhangID: khachhangInfo.khachhangID,
-      masodonhang
-    });
-    // tạo mã số đơn hàng mới
-    const newMaSoDonHang = taoMaSoDonHang();
-    luuMaSoDonHang(newMaSoDonHang);
-    const masodonhangArr = JSON.parse(localStorage.getItem('masodonhang'));
-    setMaSoDonHang(masodonhangArr[masodonhangArr.length - 1]);
     // Loai lai thong tin khach hang
     setKhachHangData(getKhachHang());
     // Delete temp data on localStorage
@@ -83,6 +91,11 @@ export default function Xuathoadon(props) {
   const onRemoveTempData = () => {
     xoaDuLieuTamThoi();
     setData([]);
+    // Clear tenkhachhhang va sodienthoai sau khi luu du lieu xong
+    setTenKhachHang('');
+    setSoDienThoai('');
+    const masodonhangArr = JSON.parse(localStorage.getItem('masodonhang'));
+    setMaSoDonHang(masodonhangArr[masodonhangArr.length - 1]);
   };
   return (
     <>

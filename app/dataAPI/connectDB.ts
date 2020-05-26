@@ -68,7 +68,6 @@ const getDataByNameAndMaSoDonHang = (params: FindingDonHang) => {
 
 // Lưu đơn hàng mới
 const postNewDonHang = donhang => {
-  console.log('luu 1 don hang moi');
   db.get('donhang')
     .push(donhang)
     .write();
@@ -76,11 +75,10 @@ const postNewDonHang = donhang => {
 
 // Lưu đơn hàng EDIT
 const postUpdateDonHang = donhang => {
-  console.log('luu 1 don hang chinh sua');
-  // db.get('donhang')
-  //   .find({ masodonhang: donhang.masodonhang })
-  //   .assign(donhang)
-  //   .write();
+  db.get('donhang')
+    .find({ masodonhang: donhang.masodonhang })
+    .assign(donhang)
+    .write();
 };
 
 const postLuuDonHang = donhang => {
@@ -124,11 +122,6 @@ const postLuuDonHang = donhang => {
   } else {
     postNewDonHang(donhang);
   }
-  // TH2: Không tồn tại khách hàng
-  // db.get('donhang')
-  //   .push(donhang)
-  //   .write();
-  // return true;
 };
 
 export {
