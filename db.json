@@ -74,12 +74,12 @@
     },
     {
       "duno": "0",
-      "tongtien": "42.390.000",
+      "tongtien": "211.950.000",
       "tenkhachhang": "lam thai son",
       "sodienthoai": "0938752570",
       "khachhangID": "s_zpPqL8C",
       "masodonhang": "012605",
-      "ngaylapdonhang": "Tuesday, May 26, 2020 2:52 PM",
+      "ngaylapdonhang": "Tuesday, May 26, 2020 3:16 PM",
       "trangthaigiacong": false,
       "thongtindonhang": [
         {
@@ -113,6 +113,78 @@
           "soluong": "10",
           "thanhtien": "18.840.000",
           "loaihang": " Tấm - 8 ly: 2000*1000"
+        },
+        {
+          "dai": "",
+          "day": "12",
+          "donvitinh": "cai",
+          "a": "2000",
+          "b": "3000",
+          "c": "",
+          "a1": "",
+          "cong1": "15.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "8.478.000",
+          "soluong": "20",
+          "thanhtien": "169.560.000",
+          "loaihang": " Tấm - 12 ly: 2000*3000"
+        }
+      ]
+    },
+    {
+      "duno": "0",
+      "tongtien": "113.040.000",
+      "tenkhachhang": "sinh le van",
+      "sodienthoai": "12312311231",
+      "khachhangID": "85sATRFbH",
+      "masodonhang": "022605",
+      "ngaylapdonhang": "Tuesday, May 26, 2020 3:13 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "15",
+          "donvitinh": "cai",
+          "a": "2000",
+          "b": "3000",
+          "c": "",
+          "a1": "",
+          "cong1": "16.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "11.304.000",
+          "soluong": "10",
+          "thanhtien": "113.040.000",
+          "loaihang": " Tấm - 15 ly: 2000*3000"
+        }
+      ]
+    },
+    {
+      "duno": "0",
+      "tongtien": "56.520.000",
+      "tenkhachhang": "opoouopiuop",
+      "sodienthoai": "878975642313",
+      "khachhangID": "BL8IJwOJZ",
+      "masodonhang": "032605",
+      "ngaylapdonhang": "Tuesday, May 26, 2020 3:16 PM",
+      "trangthaigiacong": false,
+      "thongtindonhang": [
+        {
+          "dai": "",
+          "day": "12",
+          "donvitinh": "cai",
+          "a": "1000",
+          "b": "2000",
+          "c": "",
+          "a1": "",
+          "cong1": "15.000",
+          "cong2": "0",
+          "cong3": "0",
+          "dongia": "2.826.000",
+          "soluong": "20",
+          "thanhtien": "56.520.000",
+          "loaihang": " Tấm - 12 ly: 1000*2000"
         }
       ]
     }
@@ -152,6 +224,11 @@
       "tenkhachhang": "abcdef",
       "sodienthoai": "2135498798",
       "khachhangID": "5XjCOHrur"
+    },
+    {
+      "tenkhachhang": "opoouopiuop",
+      "sodienthoai": "878975642313",
+      "khachhangID": "BL8IJwOJZ"
     }
   ],
   "muahang": []

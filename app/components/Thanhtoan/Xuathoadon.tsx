@@ -60,7 +60,6 @@ export default function Xuathoadon(props) {
     // checking is add new item or save edit item
     // Add new item
     if (masodonhang === masodonhangArr[masodonhangArr.length - 1]) {
-      console.log('don hang moi');
       // Luu thong tin khach mua hang trong ngay vao localStorage
       muaHangTrongNgay({
         tenkhachhang: khachhangInfo.tenkhachhang,
@@ -70,10 +69,10 @@ export default function Xuathoadon(props) {
       // tạo mã số đơn hàng mới
       const newMaSoDonHang = taoMaSoDonHang();
       luuMaSoDonHang(newMaSoDonHang);
-      setMaSoDonHang(masodonhangArr[masodonhangArr.length - 1]);
+      const newMaSoDonHangArr = JSON.parse(localStorage.getItem('masodonhang'));
+      setMaSoDonHang(newMaSoDonHangArr[newMaSoDonHangArr.length - 1]);
     }
     if (masodonhang !== masodonhangArr[masodonhangArr.length - 1]) {
-      console.log('edit don hang');
       setMaSoDonHang(masodonhangArr[masodonhangArr.length - 1]);
     }
     // Luu don hang vao database

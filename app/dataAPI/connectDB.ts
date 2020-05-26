@@ -1,5 +1,3 @@
-import { formatNumber, toNumber } from '../utils/xulynumber';
-
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 
@@ -92,7 +90,6 @@ const postLuuDonHang = donhang => {
   //       khachhangData
   const khachhangData = getKhachHang();
   if (khachhangData === null || khachhangData.length === 0) {
-    console.log('chua co khach hang nay');
     addKhachHang({
       tenkhachhang: donhang.tenkhachhang,
       sodienthoai: donhang.sodienthoai,

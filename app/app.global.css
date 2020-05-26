@@ -1,6 +1,18 @@
+/* montserrat-regular - latin */
 @font-face {
-  src: url('./components/assets/fonts/Montserrat-Regular.ttf');
   font-family: Montserrat;
+  font-style: normal;
+  font-weight: 200;
+
+  src: local('Montserrat Regular'), local('Montserrat-Regular'),
+    url('./assets/fonts/Montserrat-Regular.woff') format('woff')
+    /*
+    url('./assets/fonts/montserrat-v14-latin-regular.woff2') format('woff2'),
+
+    url('./assets/fonts/montserrat-v14-latin-regular.woff') format('woff'),
+
+    url('./assets/fonts/montserrat-v14-latin-regular.ttf') format('truetype'),
+*/
 }
 
 *,
@@ -13,6 +25,6 @@
 
 html,
 body {
-  font-family: Montserrat;
+  font-family: Montserrat !important;
   overflow: hidden;
 }
